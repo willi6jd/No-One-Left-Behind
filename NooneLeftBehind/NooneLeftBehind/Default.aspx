@@ -5,5 +5,3 @@
 
     </div>
 </asp:Content>
-
-<!DOCTYPE html>
