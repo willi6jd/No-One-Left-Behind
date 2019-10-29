@@ -13,10 +13,13 @@
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:ContentPlaceHolder ID="mainPlaceHolder" runat="server">
-            </asp:ContentPlaceHolder>
+    <form id="form1" runat="server" class="form-horizontal">
+        <div class="container">
+
+            <main>
+                <asp:ContentPlaceHolder ID="mainPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+            </main>
+
         </div>
     </form>
 </body>
