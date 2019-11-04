@@ -12,14 +12,14 @@
                 <asp:TextBox ID="txtDate" runat="server" TextMode="DateTime"
                         CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="col-sm-5">
+            <!--<div class="col-sm-5">
                 <asp:RequiredFieldValidator ID="rfvDate" runat="server" 
                     ControlToValidate="txtDate" text="*" CssClass="text-danger" Display="Dynamic">
                 </asp:RequiredFieldValidator>
                 <asp:CompareValidator ID="cvDate" runat="server" Text="Must be a valid date" CssClass="text-danger"
                     Display="Dynamic" ControlToValidate="txtDate" Type="Date" Operator="DataTypeCheck">
                 </asp:CompareValidator>
-            </div>
+            </div>-->
 
         </div>
         <div class="form-group">
@@ -41,11 +41,11 @@
             <div class="col-sm-4">
                 <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="col-sm-5">
+            <!--<div class="col-sm-5">
                 <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" 
                     ControlToValidate="txtFirstName" text="*" CssClass="text-danger" Display="Dynamic">
                 </asp:RequiredFieldValidator>
-            </div>
+            </div>-->
         </div>
 
         <div class="form-group">
@@ -53,11 +53,11 @@
             <div class="col-sm-4">
                 <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="col-sm-5">
+            <!--<div class="col-sm-5">
                 <asp:RequiredFieldValidator ID="rfvLastName" runat="server" 
                     ControlToValidate="txtLastName" text="*" CssClass="text-danger" Display="Dynamic">
                 </asp:RequiredFieldValidator>
-            </div>
+            </div>-->
         </div>
 
         <div class="form-group">
@@ -66,7 +66,7 @@
                 <asp:TextBox ID="txtPhone" runat="server" TextMode="Phone" 
                     CssClass="form-control"></asp:TextBox>
             </div>
-            <div class="col-sm-5">
+            <!--<div class="col-sm-5">
                 <asp:RequiredFieldValidator ID="rfvPhone" runat="server" 
                     ControlToValidate="txtPhone" text="*" CssClass="text-danger" Display="Dynamic">
                 </asp:RequiredFieldValidator>
@@ -75,7 +75,7 @@
                     Display="Dynamic" CssClass="text-danger" 
                     ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}">
                 </asp:RegularExpressionValidator>    
-            </div>
+            </div>-->
         </div>
 
         <%-- Submit and Clear buttons --%>
