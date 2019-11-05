@@ -11,7 +11,10 @@ namespace NooneLeftBehind
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                txtDate.Text = DateTime.Now.ToShortDateString();
+            }
         }
     }
 }
