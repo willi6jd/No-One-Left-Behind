@@ -3,7 +3,6 @@
 <asp:Content runat="server" ContentPlaceHolderID="mainPlaceHolder">
     <div>
         <h1>Request</h1>
-        <asp:ValidationSummary ID="ValidationSummary1" runat="server" HeaderText="* means that the field is required" CssClass="text-danger" />
 
         <h3>Request data</h3>
         <div class="form-group">
@@ -12,14 +11,6 @@
                 <asp:TextBox ID="txtDate" runat="server" TextMode="DateTime" ReadOnly="true"
                         CssClass="form-control"></asp:TextBox>
             </div>
-            <!--<div class="col-sm-5">
-                <asp:RequiredFieldValidator ID="rfvDate" runat="server" 
-                    ControlToValidate="txtDate" text="*" CssClass="text-danger" Display="Dynamic">
-                </asp:RequiredFieldValidator>
-                <asp:CompareValidator ID="cvDate" runat="server" Text="Must be a valid date" CssClass="text-danger"
-                    Display="Dynamic" ControlToValidate="txtDate" Type="Date" Operator="DataTypeCheck">
-                </asp:CompareValidator>
-            </div>-->
 
         </div>
         <div class="form-group">
@@ -118,11 +109,6 @@
             <div class="col-sm-4">
                 <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
-            <!--<div class="col-sm-5">
-                <asp:RequiredFieldValidator ID="rfvLastName" runat="server" 
-                    ControlToValidate="txtLastName" text="*" CssClass="text-danger" Display="Dynamic">
-                </asp:RequiredFieldValidator>
-            </div>-->
         </div>
 
         <div class="form-group">
@@ -131,33 +117,27 @@
                 <asp:TextBox ID="txtPhone" runat="server" TextMode="Phone" 
                     CssClass="form-control"></asp:TextBox>
             </div>
-            <!--<div class="col-sm-5">
-                <asp:RequiredFieldValidator ID="rfvPhone" runat="server" 
-                    ControlToValidate="txtPhone" text="*" CssClass="text-danger" Display="Dynamic">
-                </asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="revPhone" runat="server" 
-                    ControlToValidate="txtPhone" Text="Use this format: 999-999-9999"
-                    Display="Dynamic" CssClass="text-danger" 
-                    ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}">
-                </asp:RegularExpressionValidator>    
-            </div>-->
         </div>
 
-        <%-- Submit and Clear buttons --%>
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9">
-                <asp:Button ID="btnSubmit" runat="server" Text="Submit"
-                        CssClass="btn btn-primary"   />
-                <asp:Button ID="btnClear" runat="server" Text="Clear"
-                        CssClass="btn btn-primary" CausesValidation="false"  />
-            </div>
-        </div> 
+        
+    </div>
+</asp:Content>
+
+<asp:Content runat="server" ContentPlaceHolderID="footerPlaceHolder">
+    <%-- Submit and Clear buttons --%>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit"
+                    CssClass="btn btn-primary" OnClick="Submit_Click"   />
+            <asp:Button ID="btnClear" runat="server" Text="Clear"
+                    CssClass="btn btn-primary" CausesValidation="false" OnClick="Clear_Click"  />
+        </div>
+    </div> 
             
-        <%-- message label --%>
-        <div class="form-group">
-            <div class="col-sm-offset-1 col-sm-11">
-                <asp:Label ID="lblMessage" runat="server" CssClass="text-info"></asp:Label>
-            </div>
+    <%-- message label --%>
+    <div class="form-group">
+        <div class="col-sm-offset-1 col-sm-11">
+            <asp:Label ID="lblMessage" runat="server" CssClass="text-info"></asp:Label>
         </div>
     </div>
 </asp:Content>

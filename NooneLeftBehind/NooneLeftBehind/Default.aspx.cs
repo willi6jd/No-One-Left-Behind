@@ -16,5 +16,22 @@ namespace NooneLeftBehind
                 txtDate.Text = DateTime.Now.ToShortDateString();
             }
         }
+
+        protected void Submit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Clear_Click(object sender, EventArgs e)
+        {
+            var requestControls = Form.Controls.OfType<ContentPlaceHolder>().Where(x => x.ID == "mainPlaceHolder").Single().Controls.OfType<TextBox>().Where(x => !x.ReadOnly).ToList();
+            
+            foreach (var control in requestControls)
+            {
+                control.Text = string.Empty;
+            }
+            ddlTypeOfEmergency.SelectedIndex = 0;
+            txtDate.Text = DateTime.Now.ToShortDateString();
+        }
     }
 }

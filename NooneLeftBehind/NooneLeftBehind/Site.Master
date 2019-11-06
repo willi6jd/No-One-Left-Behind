@@ -7,7 +7,6 @@
     <title>No One Left Behind</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
-
     
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -52,12 +51,15 @@
             </div>
           </div>
         </nav>
-        <div class="container">
+        <div class="container main-container">
 
             <main>
                 <asp:ContentPlaceHolder ID="mainPlaceHolder" runat="server"></asp:ContentPlaceHolder>
             </main>
 
+        </div>
+        <div class="fixed-bottom bg-dark">
+            <asp:ContentPlaceHolder ID="footerPlaceHolder" runat="server"></asp:ContentPlaceHolder>
         </div>
     </form>
 </body>
