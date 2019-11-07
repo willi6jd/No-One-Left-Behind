@@ -56,6 +56,8 @@
             <main>
                 <asp:ContentPlaceHolder ID="mainPlaceHolder" runat="server"></asp:ContentPlaceHolder>
             </main>
+            
+            <asp:ContentPlaceHolder ID="mapPlaceHolder" runat="server"></asp:ContentPlaceHolder>
 
         </div>
         <div class="fixed-bottom bg-dark">

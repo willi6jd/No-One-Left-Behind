@@ -11,6 +11,9 @@ namespace NooneLeftBehind
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Page.IsPostBack)
+                Page.MaintainScrollPositionOnPostBack = true;
+
             if (!IsPostBack)
             {
                 txtDate.Text = DateTime.Now.ToShortDateString();

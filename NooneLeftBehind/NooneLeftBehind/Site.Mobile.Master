@@ -11,10 +11,11 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <h1>Mobile Master Page</h1>
         <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
         <section class="content-wrapper main-content clear-fix">
-            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+            <asp:ContentPlaceHolder runat="server" ID="mainPlaceHolder" />
+            <asp:ContentPlaceHolder runat="server" ID="mapPlaceHolder" />
+            <asp:ContentPlaceHolder runat="server" ID="footerPlaceHolder" />
         </section>
         <friendlyUrls:ViewSwitcher runat="server" />
     </div>
