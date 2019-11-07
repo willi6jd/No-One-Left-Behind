@@ -52,16 +52,15 @@
           </div>
         </nav>
         <div class="container main-container">
-
-            <main>
-                <asp:ContentPlaceHolder ID="mainPlaceHolder" runat="server"></asp:ContentPlaceHolder>
-            </main>
             
-            <asp:ContentPlaceHolder ID="mapPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+            <div class="fixed-bottom bg-dark">
+                <asp:ContentPlaceHolder ID="footerPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+            </div>
+            <main>
+                <asp:ContentPlaceHolder ID="mainPlaceHolder" runat="server"></asp:ContentPlaceHolder>            
+                <asp:ContentPlaceHolder ID="mapPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+            </main>
 
-        </div>
-        <div class="fixed-bottom bg-dark">
-            <asp:ContentPlaceHolder ID="footerPlaceHolder" runat="server"></asp:ContentPlaceHolder>
         </div>
     </form>
 </body>

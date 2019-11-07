@@ -33,6 +33,15 @@ namespace NooneLeftBehind
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// footerPlaceHolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder footerPlaceHolder;
+
+        /// <summary>
         /// mainPlaceHolder control.
         /// </summary>
         /// <remarks>
@@ -49,14 +58,5 @@ namespace NooneLeftBehind
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder mapPlaceHolder;
-
-        /// <summary>
-        /// footerPlaceHolder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder footerPlaceHolder;
     }
 }

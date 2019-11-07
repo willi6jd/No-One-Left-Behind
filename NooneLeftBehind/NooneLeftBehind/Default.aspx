@@ -121,27 +121,29 @@
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="footerPlaceHolder">
+    <div class="container">
     <%-- Submit and Clear buttons --%>
-    <div class="form-group">
-        <div class="col-sm-offset col-sm">
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit"
-                    CssClass="btn btn-primary" OnClick="Submit_Click"   />
-            <asp:Button ID="btnClear" runat="server" Text="Clear"
-                    CssClass="btn btn-primary" CausesValidation="false" OnClick="Clear_Click"  />
-        </div>
-    </div> 
+        <div class="form-group">
+            <div class="col-sm-offset col-sm">
+                <asp:Button ID="btnSubmit" runat="server" Text="Submit"
+                        CssClass="btn btn-primary" OnClick="Submit_Click"   />
+                <asp:Button ID="btnClear" runat="server" Text="Clear"
+                        CssClass="btn btn-primary" CausesValidation="false" OnClick="Clear_Click"  />
+            </div>
+        </div> 
             
-    <%-- message label --%>
-    <div class="form-group">
-        <div class="col-sm-offset col-sm">
-            <asp:Label ID="lblMessage" runat="server" CssClass="text-info"></asp:Label>
+        <%-- message label --%>
+        <div class="form-group">
+            <div class="col-sm-offset col-sm">
+                <asp:Label ID="lblMessage" runat="server" CssClass="text-info"></asp:Label>
+            </div>
         </div>
     </div>
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="mapPlaceHolder">
 
-    <asp:Button ID="btnGetLocation" runat="server" Text="Get Location"
+    <asp:Button ID="btnGetLocation" runat="server" Text="Get Cooridinates"
                     CssClass="btn btn-secondary" OnClientClick="getLocation();return false;"   />
     <div class="form-group">
         <label class="col-sm control-label">Latitude</label>
@@ -159,7 +161,7 @@
     </div>
 
     <script>
-    var x = document.getElementById("footerPlaceHolder_lblMessage");
+    var x = document.getElementById('<%= lblMessage.ClientID %>');
 
     function getLocation() {
         if (navigator.geolocation) {
@@ -171,9 +173,9 @@
 
     function showPosition(position) {
 
-        document.getElementById("mapPlaceHolder_txtLatitude").value = position.coords.latitude;
+        document.getElementById('<%= txtLatitude.ClientID %>').value = position.coords.latitude;
 
-        document.getElementById("mapPlaceHolder_txtLongitude").value = position.coords.longitude;
+        document.getElementById('<%= txtLongitude.ClientID %>').value = position.coords.longitude;
     }
 
     function showError(error) {
@@ -192,5 +194,5 @@
                 break;
         }
     }
-</script>
+    </script>
 </asp:Content>
