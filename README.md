@@ -1,1 +1,5 @@
-# No-One-Left-Behind
+-No One Left Behind-
+
+This build is inteded for Team 30 of the University of Cincinnati.
+
+---Over 200 million 911 calls are made every year. For first responders fast flowing information and communication during an ever-changing emergency is crucial to saving lives. No One Left Behind is focused on improving emergency response by managing and presenting big data that is crowd sourced from those at the crisis through an easy to use web app. Currently, the standard way of first responders receiving information is through a slow relay over radio between dispatcher and first responder. With the No One Left Behind app we hope to improve communication, enhance situational awareness, and better crisis remediation. NLB will utilize access to smartphones for a user description of what is currently happening at a crisis and will allow for scannable QR codes in ‘Areas of Rescue’ that currently lack in assisting the disabled. Our user interface will be quick and easy to use for first responders and users.---
