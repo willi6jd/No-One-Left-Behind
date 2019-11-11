@@ -16,7 +16,7 @@ namespace NooneLeftBehind
 
             if (!IsPostBack)
             {
-                txtDate.Text = DateTime.Now.ToShortDateString();
+                txtDate.Text = DateTime.Now.ToString();
             }
         }
 

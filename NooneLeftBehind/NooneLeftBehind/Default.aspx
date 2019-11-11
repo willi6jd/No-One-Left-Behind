@@ -29,14 +29,14 @@
                 <div class="form-group">
                     <label class="col-sm control-label">Number of People</label>
                     <div class="col-sm">
-                        <asp:TextBox ID="txtNumOfPeople" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtNumOfPeople" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm control-label">Number of Immobile People</label>
                     <div class="col-sm">
-                        <asp:TextBox ID="txtNumOfImmobile" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtNumOfImmobile" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                     </div>
                 </div>
 
