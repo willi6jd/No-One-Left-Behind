@@ -59,36 +59,51 @@
                 <h3>Location Information</h3>
                 <div class="form-group">
                     <label class="col-sm control-label">Street Address</label>
-                    <div class="col-sm">
-                        <asp:TextBox ID="txtStreetAddress" runat="server" CssClass="form-control"></asp:TextBox>
+                    <div class="row col-sm">
+                        <div class="col-sm">
+                            <asp:TextBox ID="txtStreetAddress" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <asp:RequiredFieldValidator ID="rfvStreetAddress" runat="server" ControlToValidate="txtStreetAddress" CssClass="text-danger col-sm-0" Text="*" ErrorMessage="Street Address is Required."></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm control-label">Room Number</label>
-                    <div class="col-sm">
-                        <asp:TextBox ID="txtRoom" runat="server" CssClass="form-control"></asp:TextBox>
+                    <div class="row col-sm">
+                        <div class="col-sm">
+                            <asp:TextBox ID="txtRoom" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <div class="col-sm-0 hidden" style="visibility: hidden;">*</div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm control-label">Floor</label>
-                    <div class="col-sm">
-                        <asp:TextBox ID="txtFloor" runat="server" CssClass="form-control"></asp:TextBox>
+                    <div class="row col-sm">
+                        <div class="col-sm">
+                            <asp:TextBox ID="txtFloor" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <div class="col-sm-0 hidden" style="visibility: hidden;">*</div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm control-label">City</label>
-                    <div class="col-sm">
-                        <asp:TextBox ID="txtCity" runat="server" CssClass="form-control"></asp:TextBox>
+                    <div class="row col-sm">
+                        <div class="col-sm">
+                            <asp:TextBox ID="txtCity" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity" CssClass="text-danger col-sm-0" Text="*" ErrorMessage="City is Required."></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm control-label">State</label>
-                    <div class="col-sm">
-                        <asp:TextBox ID="txtState" runat="server" CssClass="form-control"></asp:TextBox>
+                    <div class="row col-sm">
+                        <div class="col-sm">
+                            <asp:TextBox ID="txtState" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                        <asp:RequiredFieldValidator ID="rfvState" runat="server" ControlToValidate="txtState" CssClass="text-danger col-sm-0" Text="*" ErrorMessage="State is Required."></asp:RequiredFieldValidator>
                     </div>
                 </div>
             </div>
@@ -115,6 +130,63 @@
                             CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
+
+                <asp:Button ID="btnGetLocation" runat="server" Text="Get Cooridinates"
+                    CssClass="btn btn-secondary" OnClientClick="getLocation();return false;"   />
+                <div id="coords" hidden="hidden">
+                    <div class="form-group">
+                        <label class="col-sm control-label">Latitude</label>
+                        <div class="col-sm">
+                            <asp:TextBox ID="txtLatitude" runat="server" TextMode="DateTime" 
+                                    CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm control-label">Longitude</label>
+                        <div class="col-sm">
+                            <asp:TextBox ID="txtLongitude" runat="server" TextMode="DateTime" 
+                                    CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    var x = document.getElementById('<%= lblMessage.ClientID %>');
+
+                    function getLocation() {
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(showPosition, showError);
+                        } else {
+                            x.innerHTML = "Geolocation is not supported by this browser.";
+                        }
+                    }
+
+                    function showPosition(position) {
+
+                        document.getElementById('<%= txtLatitude.ClientID %>').value = position.coords.latitude;
+                    $('#<%= txtLatitude.ClientID%>').prop('readonly', true);
+                    document.getElementById('<%= txtLongitude.ClientID %>').value = position.coords.longitude;
+                    $('#<%= txtLongitude.ClientID%>').prop('readonly', true);
+                        document.getElementById('coords').hidden = false;
+                    }
+
+                    function showError(error) {
+                        switch (error.code) {
+                            case error.PERMISSION_DENIED:
+                                x.innerHTML = "User denied the request for Geolocation."
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                x.innerHTML = "Location information is unavailable."
+                                break;
+                            case error.TIMEOUT:
+                                x.innerHTML = "The request to get user location timed out."
+                                break;
+                            case error.UNKNOWN_ERROR:
+                                x.innerHTML = "An unknown error occurred."
+                                break;
+                        }
+                    }
+                </script>
             </div>
         </div>
     </div>
@@ -139,60 +211,4 @@
             </div>
         </div>
     </div>
-</asp:Content>
-
-<asp:Content runat="server" ContentPlaceHolderID="mapPlaceHolder">
-
-    <asp:Button ID="btnGetLocation" runat="server" Text="Get Cooridinates"
-                    CssClass="btn btn-secondary" OnClientClick="getLocation();return false;"   />
-    <div class="form-group">
-        <label class="col-sm control-label">Latitude</label>
-        <div class="col-sm">
-            <asp:TextBox ID="txtLatitude" runat="server" TextMode="DateTime" ReadOnly="true"
-                    CssClass="form-control"></asp:TextBox>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm control-label">Longitude</label>
-        <div class="col-sm">
-            <asp:TextBox ID="txtLongitude" runat="server" TextMode="DateTime" ReadOnly="true"
-                    CssClass="form-control"></asp:TextBox>
-        </div>
-    </div>
-
-    <script>
-    var x = document.getElementById('<%= lblMessage.ClientID %>');
-
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition, showError);
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-    }
-
-    function showPosition(position) {
-
-        document.getElementById('<%= txtLatitude.ClientID %>').value = position.coords.latitude;
-
-        document.getElementById('<%= txtLongitude.ClientID %>').value = position.coords.longitude;
-    }
-
-    function showError(error) {
-        switch (error.code) {
-            case error.PERMISSION_DENIED:
-                x.innerHTML = "User denied the request for Geolocation."
-                break;
-            case error.POSITION_UNAVAILABLE:
-                x.innerHTML = "Location information is unavailable."
-                break;
-            case error.TIMEOUT:
-                x.innerHTML = "The request to get user location timed out."
-                break;
-            case error.UNKNOWN_ERROR:
-                x.innerHTML = "An unknown error occurred."
-                break;
-        }
-    }
-    </script>
 </asp:Content>

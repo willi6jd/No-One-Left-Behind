@@ -6,6 +6,7 @@ namespace NooneLeftBehind.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("Requests")]
     public partial class Request
     {
         public int RequestID { get; set; }
@@ -36,6 +37,10 @@ namespace NooneLeftBehind.Models
 
         [StringLength(50)]
         public string PhoneNumber { get; set; }
+
+        public decimal? Longitude { get; set; }
+
+        public decimal? Latitude { get; set; }
 
         public virtual Location Location { get; set; }
     }

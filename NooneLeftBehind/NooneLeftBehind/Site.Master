@@ -57,8 +57,7 @@
                 <asp:ContentPlaceHolder ID="footerPlaceHolder" runat="server"></asp:ContentPlaceHolder>
             </div>
             <main>
-                <asp:ContentPlaceHolder ID="mainPlaceHolder" runat="server"></asp:ContentPlaceHolder>            
-                <asp:ContentPlaceHolder ID="mapPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+                <asp:ContentPlaceHolder ID="mainPlaceHolder" runat="server"></asp:ContentPlaceHolder>    
             </main>
 
         </div>

@@ -6,6 +6,7 @@ namespace NooneLeftBehind.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("Locations")]
     public partial class Location
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -33,10 +34,6 @@ namespace NooneLeftBehind.Models
         [Required]
         [StringLength(100)]
         public string State { get; set; }
-
-        public decimal? Longitude { get; set; }
-
-        public decimal? Latitude { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Request> Requests { get; set; }

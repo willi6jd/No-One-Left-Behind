@@ -18,9 +18,7 @@ BEGIN
 		[RoomNumber] [varchar](255) NULL,
 		[Floor] [varchar](255) NULL,
 		[City] [varchar](100) NOT NULL,
-		[State] [varchar](100) NOT NULL,
-		[Longitude] [decimal](30,20) NULL,		
-		[Latitude] [decimal](30,20) NULL)
+		[State] [varchar](100) NOT NULL)
 END 
 
 IF (NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = 'NoOneLeftBehind' and TABLE_NAME = 'Requests'))
@@ -36,6 +34,8 @@ BEGIN
 		[LocationID] [int] NOT NULL FOREIGN KEY REFERENCES Locations(LocationID),
 		[FirstName] [varchar](255) NULL,
 		[LastName] [varchar](255) NULL,
-		[PhoneNumber] [varchar](50) NULL
+		[PhoneNumber] [varchar](50) NULL,
+		[Longitude] [decimal](30,20) NULL,		
+		[Latitude] [decimal](30,20) NULL
 		)
 END 

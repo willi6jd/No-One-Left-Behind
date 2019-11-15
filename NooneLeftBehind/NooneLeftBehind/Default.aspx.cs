@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NooneLeftBehind.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,7 +23,47 @@ namespace NooneLeftBehind
 
         protected void Submit_Click(object sender, EventArgs e)
         {
+            using (var db = new NOLBContext())
+            {
+                var location = db.Locations
+                    .Where(x => x.StreetAddress == txtStreetAddress.Text.Trim()
+                    && x.City == txtCity.Text.Trim()
+                    && x.State == txtState.Text.Trim()
+                    && x.Floor == txtFloor.Text.Trim()
+                    && x.RoomNumber == txtRoom.Text.Trim())
+                    .SingleOrDefault();
 
+                if (location == null)
+                {
+                    location = new Location
+                    {
+                        City = txtCity.Text.Trim(),
+                        Floor = txtFloor.Text.Trim(),
+                        RoomNumber = txtRoom.Text.Trim(),
+                        StreetAddress = txtStreetAddress.Text.Trim(),
+                        State = txtState.Text.Trim()
+                    };
+                }
+
+                var newRequest = new Request
+                {
+                    TimeStamp = Convert.ToDateTime(txtDate.Text),
+                    TypeOfEmergency = ddlTypeOfEmergency.SelectedValue,
+                    NumberOfPeople = int.TryParse(txtNumOfPeople.Text, out int numOfPeople) ? numOfPeople : 0,
+                    NumberOfImmobilePeople = int.TryParse(txtNumOfImmobile.Text, out int numOfImmobile) ? numOfImmobile : 0,
+                    InjuriesOrOtherInfo = txtInjuriesOrSpecialInfo.Text,
+                    AccessibleOutsideWindow = cbOutsideWindow.Checked,
+                    FirstName = txtFirstName.Text,
+                    LastName = txtLastName.Text,
+                    PhoneNumber = txtPhone.Text,
+                    Latitude = decimal.TryParse(txtLatitude.Text, out decimal latitude) ? latitude : 0.0M,
+                    Longitude = decimal.TryParse(txtLongitude.Text, out decimal longitude) ? longitude : 0.0M,
+                    Location = location
+                };
+
+                db.Requests.Add(newRequest);
+                db.SaveChanges();
+            }
         }
 
         protected void Clear_Click(object sender, EventArgs e)
@@ -34,7 +75,7 @@ namespace NooneLeftBehind
                 control.Text = string.Empty;
             }
             ddlTypeOfEmergency.SelectedIndex = 0;
-            txtDate.Text = DateTime.Now.ToShortDateString();
+            txtDate.Text = DateTime.Now.ToString();
         }
     }
 }
