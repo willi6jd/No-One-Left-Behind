@@ -201,14 +201,8 @@
                         CssClass="btn btn-primary" OnClick="Submit_Click"   />
                 <asp:Button ID="btnClear" runat="server" Text="Clear"
                         CssClass="btn btn-primary" CausesValidation="false" OnClick="Clear_Click"  />
-            </div>
-        </div> 
-            
-        <%-- message label --%>
-        <div class="form-group">
-            <div class="col-offset col">
                 <asp:Label ID="lblMessage" runat="server" CssClass="text-info"></asp:Label>
             </div>
-        </div>
+        </div> 
     </div>
 </asp:Content>

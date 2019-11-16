@@ -63,6 +63,8 @@ namespace NooneLeftBehind
 
                 db.Requests.Add(newRequest);
                 db.SaveChanges();
+
+                lblMessage.Text = "Request Successfully Submitted.";
             }
         }
 
@@ -76,6 +78,7 @@ namespace NooneLeftBehind
             }
             ddlTypeOfEmergency.SelectedIndex = 0;
             txtDate.Text = DateTime.Now.ToString();
+            lblMessage.Text = String.Empty;
         }
     }
 }
