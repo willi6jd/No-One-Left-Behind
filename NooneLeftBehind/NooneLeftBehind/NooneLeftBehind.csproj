@@ -219,6 +219,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="AzureNOLBContext.cs" />
+    <Compile Include="BugFixFriendlyUrlResolver.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
