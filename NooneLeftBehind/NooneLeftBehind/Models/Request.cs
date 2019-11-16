@@ -6,7 +6,6 @@ namespace NooneLeftBehind.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Requests")]
     public partial class Request
     {
         public int RequestID { get; set; }

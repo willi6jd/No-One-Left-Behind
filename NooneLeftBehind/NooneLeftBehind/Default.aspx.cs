@@ -23,7 +23,7 @@ namespace NooneLeftBehind
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            using (var db = new NOLBContext())
+            using (var db = new AzureNOLBContext())
             {
                 var location = db.Locations
                     .Where(x => x.StreetAddress == txtStreetAddress.Text.Trim()
