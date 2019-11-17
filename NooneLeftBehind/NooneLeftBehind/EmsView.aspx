@@ -2,30 +2,53 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="mainPlaceHolder">
     <div class="container" style="padding-top: 10px;">
-        <asp:GridView ID="grdRequests" runat="server" CssClass="table table-condensed table-striped table-bordered" AutoGenerateColumns="False" DataKeyNames="LocationID,RequestID" DataSourceID="sqlRequests" AllowPaging="True">
-            <Columns>
-                <asp:BoundField DataField="LocationID" HeaderText="LocationID" InsertVisible="False" ReadOnly="True" SortExpression="LocationID" Visible="False" />
-                <asp:BoundField DataField="StreetAddress" HeaderText="StreetAddress" SortExpression="StreetAddress" />
-                <asp:BoundField DataField="RoomNumber" HeaderText="Room" SortExpression="RoomNumber" />
-                <asp:BoundField DataField="Floor" HeaderText="Floor" SortExpression="Floor" />
-                <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
-                <asp:BoundField DataField="State" HeaderText="State" SortExpression="State" />
-                <asp:BoundField DataField="RequestID" HeaderText="RequestID" InsertVisible="False" ReadOnly="True" SortExpression="RequestID" Visible="False"/>
-                <asp:BoundField DataField="TimeStamp" HeaderText="TimeStamp" SortExpression="TimeStamp" />
-                <asp:BoundField DataField="TypeOfEmergency" HeaderText="Emergency" SortExpression="TypeOfEmergency" />
-                <asp:BoundField DataField="NumberOfPeople" HeaderText="# of People" SortExpression="NumberOfPeople" />
-                <asp:BoundField DataField="NumberOfImmobilePeople" HeaderText="# of Immobil" SortExpression="NumberOfImmobilePeople" />
-                <asp:BoundField DataField="InjuriesOrOtherInfo" HeaderText="Injuries/Info" SortExpression="InjuriesOrOtherInfo" />
-                <asp:CheckBoxField DataField="AccessibleOutsideWindow" HeaderText="Outside Window" SortExpression="AccessibleOutsideWindow" />
-                <asp:BoundField DataField="FirstName" HeaderText="First Name" SortExpression="FirstName" />
-                <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName" />
+        <asp:GridView ID="grdRequests" runat="server" CssClass="table table-condensed table-striped table-bordered" 
+            AutoGenerateColumns="False" AllowPaging="True"
+            ItemType="NooneLeftBehind.Models.Request"
+            SelectMethod="grdRequests_GetData">
+            <Columns>            
+                <asp:DynamicField DataField="TimeStamp" />
+                <asp:TemplateField HeaderText="Street Address">
+                  <ItemTemplate>
+                    <asp:Label Text="<%# Item.Location.StreetAddress %>" 
+                        runat="server" />
+                  </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Room">
+                  <ItemTemplate>
+                    <asp:Label Text="<%# Item.Location.RoomNumber %>" 
+                        runat="server" />
+                  </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Floor" >
+                  <ItemTemplate>
+                    <asp:Label Text="<%# Item.Location.Floor %>" 
+                        runat="server" />
+                  </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="City">
+                  <ItemTemplate>
+                    <asp:Label Text="<%# Item.Location.City %>" 
+                        runat="server" />
+                  </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="State">
+                  <ItemTemplate>
+                    <asp:Label Text="<%# Item.Location.State %>" 
+                        runat="server" />
+                  </ItemTemplate>
+                </asp:TemplateField>
+                <asp:DynamicField DataField="TypeOfEmergency" HeaderText="Emergency Type" />
+                <asp:DynamicField DataField="NumberOfPeople" HeaderText="# of People" />
+                <asp:DynamicField DataField="NumberOfImmobilePeople" HeaderText="# of Immobile" />
+                <asp:DynamicField DataField="InjuriesOrOtherInfo" HeaderText="Injuries/Info" />
+                <asp:DynamicField DataField="AccessibleOutsideWindow" HeaderText="Outside Window" />
+                <asp:DynamicField DataField="FirstName" HeaderText="First Name" />
+                <asp:DynamicField DataField="LastName" HeaderText="Last Name" />
                 <asp:HyperLinkField DataTextField="PhoneNumber" HeaderText="Phone" DataTextFormatString="&lt;a href=tel:{0}&gt;{0}&lt;/a&gt;" />
-                
-                <asp:BoundField DataField="Longitude" HeaderText="Longitude" SortExpression="Longitude" Visible="False" />
-                <asp:BoundField DataField="Latitude" HeaderText="Latitude" SortExpression="Latitude" Visible="False"/>
                 
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="sqlRequests" runat="server" ConnectionString="<%$ ConnectionStrings:AzureNOLBContext %>" SelectCommand="SELECT Locations.LocationID, Locations.StreetAddress, Locations.RoomNumber, Locations.Floor, Locations.City, Locations.State, Requests.RequestID, Requests.TimeStamp, Requests.TypeOfEmergency, Requests.NumberOfPeople, Requests.NumberOfImmobilePeople, Requests.InjuriesOrOtherInfo, Requests.AccessibleOutsideWindow, Requests.LocationID AS Expr1, Requests.FirstName, Requests.LastName, Requests.PhoneNumber, Requests.Longitude, Requests.Latitude FROM Requests INNER JOIN Locations ON Requests.LocationID = Locations.LocationID ORDER BY Requests.TimeStamp DESC"></asp:SqlDataSource>
+
     </div>
 </asp:Content>
