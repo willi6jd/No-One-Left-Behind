@@ -19,6 +19,17 @@ namespace NooneLeftBehind
             {
                 txtDate.Text = DateTime.Now.ToString();
             }
+
+            if (Request.QueryString["StreetAddress"] != null)
+                txtStreetAddress.Text = Request.QueryString["StreetAddress"];
+            if (Request.QueryString["Room"] != null)
+                txtRoom.Text = Request.QueryString["Room"];
+            if (Request.QueryString["Floor"] != null)
+                txtFloor.Text = Request.QueryString["Floor"];
+            if (Request.QueryString["City"] != null)
+                txtCity.Text = Request.QueryString["City"];
+            if (Request.QueryString["State"] != null)
+                txtState.Text = Request.QueryString["State"];
         }
 
         protected void Submit_Click(object sender, EventArgs e)
