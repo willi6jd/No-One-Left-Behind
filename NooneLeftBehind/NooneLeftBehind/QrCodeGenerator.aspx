@@ -52,7 +52,7 @@
                         <div class="col-sm-4 col">
                             <asp:TextBox ID="txtState" runat="server" CssClass="form-control"></asp:TextBox>
                         </div>
-                        <asp:RequiredFieldValidator ID="rfvState" runat="server" ControlToValidate="txtState" CssClass="text-danger col-0 text-left" Text="*" ErrorMessage="State is Required."></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="rfvState" runat="server" ControlToValidate="txtState" CssClass="text-danger col-0" Text="*" ErrorMessage="State is Required."></asp:RequiredFieldValidator>
                     </div>
                 </div>
             </div>

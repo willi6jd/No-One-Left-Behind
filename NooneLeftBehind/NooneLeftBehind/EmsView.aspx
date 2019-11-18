@@ -56,6 +56,11 @@
                 
             </Columns>
         </asp:GridView>
+    </div>
+</asp:Content>
 
+<asp:Content runat="server" ContentPlaceHolderID="mainPlaceHolder">
+    <div class="container" style="padding-top: 10px;">
+        <asp:Label ID="lblNoResults" runat="server" Text="" CssClass="text-center"></asp:Label>
     </div>
 </asp:Content>

@@ -30,6 +30,10 @@ namespace NooneLeftBehind
                 .Where(x => !x.Cleared && x.TimeStamp > date)
                 .GroupBy(x => x.LocationID)
                 .Select(x => x.OrderByDescending(y => y.TimeStamp).FirstOrDefault()).OrderByDescending(x => x.TimeStamp);
+
+            if (requests.Count() == 0)
+                lblNoResults.Text = "No uncleared requests have been submitted in the last 24 hours.";
+
             return requests;
         }
 
