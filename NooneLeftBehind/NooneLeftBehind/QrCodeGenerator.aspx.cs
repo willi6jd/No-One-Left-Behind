@@ -79,21 +79,19 @@ namespace NooneLeftBehind
 
         private string GenerateQrCodeString()
         {
-            var codeString = $"{Request.Url.GetLeftPart(UriPartial.Authority)}/?";
+            var codeString = $"{Request.Url.GetLeftPart(UriPartial.Authority)}/Default?";
             var parameters = new List<string>();
             if (!string.IsNullOrWhiteSpace(txtStreetAddress.Text))
                 parameters.Add($"StreetAddress={txtStreetAddress.Text}");
             if (!string.IsNullOrWhiteSpace(txtRoom.Text))
-                parameters.Add($"StreetAddress={txtRoom.Text}");
+                parameters.Add($"Room={txtRoom.Text}");
             if (!string.IsNullOrWhiteSpace(txtFloor.Text))
-                parameters.Add($"StreetAddress={txtFloor.Text}");
+                parameters.Add($"Floor={txtFloor.Text}");
             if (!string.IsNullOrWhiteSpace(txtCity.Text))
-                parameters.Add($"StreetAddress={txtCity.Text}");
+                parameters.Add($"City={txtCity.Text}");
             if (!string.IsNullOrWhiteSpace(txtState.Text))
-                parameters.Add($"StreetAddress={txtState.Text}");
-
+                parameters.Add($"State={txtState.Text}");
             codeString += string.Join("&", parameters);
-
             return codeString;
         }
 
