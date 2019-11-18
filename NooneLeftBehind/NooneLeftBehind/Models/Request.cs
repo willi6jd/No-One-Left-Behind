@@ -41,6 +41,8 @@ namespace NooneLeftBehind.Models
 
         public decimal? Latitude { get; set; }
 
+        public bool Cleared { get; set; }
+
         public virtual Location Location { get; set; }
     }
 }

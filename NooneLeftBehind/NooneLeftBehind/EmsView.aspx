@@ -1,12 +1,19 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EmsView.aspx.cs" Inherits="NooneLeftBehind.EmsView" MasterPageFile="Site.Master" %>
 
-<asp:Content runat="server" ContentPlaceHolderID="mainPlaceHolder">
-    <div class="container" style="padding-top: 10px;">
+<asp:Content runat="server" ContentPlaceHolderID="tablePlaceHolder">
+    <div style="padding-top: 10px;">
         <asp:GridView ID="grdRequests" runat="server" CssClass="table table-condensed table-striped table-bordered" 
             AutoGenerateColumns="False" AllowPaging="True"
             ItemType="NooneLeftBehind.Models.Request"
-            SelectMethod="grdRequests_GetData">
+            SelectMethod="grdRequests_GetData"
+            OnRowCommand="grdRequests_RowCommand">
             <Columns>            
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Button ID="btnClear" runat="server" Text="Clear" 
+                                    CommandName="ClearRequest" CommandArgument="<%# Item.RequestID %>" CssClass="form-control" />
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:DynamicField DataField="TimeStamp" />
                 <asp:TemplateField HeaderText="Street Address">
                   <ItemTemplate>
