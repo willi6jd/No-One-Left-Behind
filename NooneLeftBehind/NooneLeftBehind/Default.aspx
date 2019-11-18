@@ -4,7 +4,7 @@
     <div class="container" style="padding-top: 10px;">
         <div class="row">
             <div class="col-sm">
-                <h3>Request data</h3>
+                <h3>Request Information</h3>
                 <div class="form-group">
                     <label class="col control-label">Date</label>
                     <div class="col">
