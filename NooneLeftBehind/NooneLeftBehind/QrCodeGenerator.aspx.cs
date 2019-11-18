@@ -17,23 +17,20 @@ namespace NooneLeftBehind
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                txtDate.Text = DateTime.Now.ToShortDateString();
-            }
 
         }
 
         protected void btnSubmit_ClickQR(object sender, EventArgs e)
         {
-
-            using (var qrCode = new QrCodeGenerator())
+            //Creates New Instance of a QR
+            using (var qrCode = new QRCodeGenerator())
             {
                 var qrCodeString = GenerateQrCodeString();
                 //Append URL to qrCode
-                var dataURL = qrCode.CreateQrCode(qrCodeString, QrCodeGenerator.ECCLevel.Q);
-                using(var code = new QrCode(dataURL))
+                var dataURL = qrCode.CreateQrCode(qrCodeString, QRCodeGenerator.ECCLevel.Q);
+                using (var code = new QRCode(dataURL))
                 {
+                    //Images qrCode and determines dimmensions
                     var imgBarCode = new System.Web.UI.WebControls.Image
                     {
                         Height = 400,
@@ -43,31 +40,11 @@ namespace NooneLeftBehind
                     {
                         using (MemoryStream ms = new MemoryStream())
                         {
-                            bitMap.Save(ms, BadImageFormatException.Png);
-                            var vyteImage = ms.ToArray();
-                            imgBarCode.ImageURL = "data:image/png;base64," + Convert.ToBase64String(byteImage);
+                            bitMap.Save(ms, ImageFormat.Png);
+                            var byteImage = ms.ToArray();
+                            imgBarCode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
                         }
                         PlaceHolder1.Controls.Add(imgBarCode);
-
-                        string GenerateQrCodeString()
-                        {
-                            var codeString = $"{Request.Url.GetLeftPart(UriPartial.Authority)}/Default?";
-                            var parameters = new List<string>();
-                            if (!string.IsNullOrWhiteSpace(txtStreetAddress.Text))
-                                parameters.Add($"StreetAddress={txtStreetAddress.Text}");
-                            if (!string.IsNullOrWhiteSpace(txtRoom.Text))
-                                parameters.Add($"StreetAddress={txtRoom.Text}");
-                            if (!string.IsNullOrWhiteSpace(txtFloor.Text))
-                                parameters.Add($"StreetAddress={txtFloor.Text}");
-                            if (!string.IsNullOrWhiteSpace(txtCity.Text))
-                                parameters.Add($"StreetAddress={txtCity.Text}");
-                            if (!string.IsNullOrWhiteSpace(txtState.Text))
-                                parameters.Add($"StreetAddress={txtState.Text}");
-
-                            codeString += string.Join("&", parameters);
-
-                            return codeString;
-                        }
                     }
                 }
             }
@@ -75,7 +52,7 @@ namespace NooneLeftBehind
             using (var db = new AzureNOLBContext())
             {
                 var location = db.Locations
-                    .Where(x => x.StreetAddress == txtStreetAdress.Text.Trim()
+                    .Where(x => x.StreetAddress == txtStreetAddress.Text.Trim()
                     && x.City == txtCity.Text.Trim()
                     && x.State == txtState.Text.Trim()
                     && x.Floor == txtFloor.Text.Trim()
@@ -84,25 +61,51 @@ namespace NooneLeftBehind
 
                 if (location == null)
                 {
-                    location = new location
+                    location = new Location
                     {
                         City = txtCity.Text.Trim(),
                         Floor = txtFloor.Text.Trim(),
                         RoomNumber = txtRoom.Text.Trim(),
                         StreetAddress = txtStreetAddress.Text.Trim(),
-                        Stste = txtState.Text.Trim()
+                        State = txtState.Text.Trim()
                     };
+
+                    db.Locations.Add(location);
+                    db.SaveChanges();
                 }
-                var newLocation = new Location
-                {
-                    Location = location
-                };
-
-                db.Locations.Add(newLocation);
-                db.SaveChanges();
-
-                
+                                              
             }
+        }
+
+        private string GenerateQrCodeString()
+        {
+            var codeString = $"{Request.Url.GetLeftPart(UriPartial.Authority)}/Default?";
+            var parameters = new List<string>();
+            if (!string.IsNullOrWhiteSpace(txtStreetAddress.Text))
+                parameters.Add($"StreetAddress={txtStreetAddress.Text}");
+            if (!string.IsNullOrWhiteSpace(txtRoom.Text))
+                parameters.Add($"StreetAddress={txtRoom.Text}");
+            if (!string.IsNullOrWhiteSpace(txtFloor.Text))
+                parameters.Add($"StreetAddress={txtFloor.Text}");
+            if (!string.IsNullOrWhiteSpace(txtCity.Text))
+                parameters.Add($"StreetAddress={txtCity.Text}");
+            if (!string.IsNullOrWhiteSpace(txtState.Text))
+                parameters.Add($"StreetAddress={txtState.Text}");
+
+            codeString += string.Join("&", parameters);
+
+            return codeString;
+        }
+
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            var requestControls = Form.Controls.OfType<ContentPlaceHolder>().Where(x => x.ID == "mainPlaceHolder").Single().Controls.OfType<TextBox>().Where(x => !x.ReadOnly).ToList();
+
+            foreach (var control in requestControls)
+            {
+                control.Text = string.Empty;
+            }
+            lblMessage.Text = String.Empty;
         }
     }
 }
