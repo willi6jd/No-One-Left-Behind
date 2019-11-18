@@ -36,6 +36,7 @@ BEGIN
 		[LastName] [varchar](255) NULL,
 		[PhoneNumber] [varchar](50) NULL,
 		[Longitude] [decimal](30,20) NULL,		
-		[Latitude] [decimal](30,20) NULL
+		[Latitude] [decimal](30,20) NULL,
+		[Cleared] [bit] NOT NULL DEFAULT 0
 		)
 END 

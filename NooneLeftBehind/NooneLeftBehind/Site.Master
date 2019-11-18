@@ -51,6 +51,8 @@
             </div>
           </div>
         </nav>
+        
+        <asp:ContentPlaceHolder ID="tablePlaceHolder" runat="server"></asp:ContentPlaceHolder>
         <div class="container main-container">
             
             <div class="fixed-bottom bg-dark">
