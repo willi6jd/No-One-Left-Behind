@@ -149,6 +149,7 @@
                         </div>
                     </div>
                 </div>
+                <div id="mapholder"></div>
 
                 <script>
                     var x = document.getElementById('<%= lblMessage.ClientID %>');
@@ -168,6 +169,10 @@
                     document.getElementById('<%= txtLongitude.ClientID %>').value = position.coords.longitude;
                     $('#<%= txtLongitude.ClientID%>').prop('readonly', true);
                         document.getElementById('coords').hidden = false;
+                        var current = { lat: position.coords.latitude, lng: position.coords.longitude };
+                        var map = new google.maps.Map(
+                            document.getElementById('mapholder'), { zoom: 4, center: current });
+                        var marker = new google.maps.Marker({ position: current, map: map });
                     }
 
                     function showError(error) {
@@ -186,6 +191,19 @@
                                 break;
                         }
                     }
+                    function initMap() {
+                        // The location of Uluru
+                        var uluru = { lat: -25.344, lng: 131.036 };
+                        // The map, centered at Uluru
+                        var map = new google.maps.Map(
+                            document.getElementById('map'), { zoom: 4, center: uluru });
+                        // The marker, positioned at Uluru
+                        var marker = new google.maps.Marker({ position: uluru, map: map });
+                    }
+                </script>
+
+                <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu4Kt_LuqphKL8bVqQwMOyRVff7gLAXi4&callback=initMap">
                 </script>
             </div>
         </div>
