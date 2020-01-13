@@ -149,64 +149,63 @@
                         </div>
                     </div>
                 </div>
-                <div id="mapholder"></div>
-
-                <script>
-                    var x = document.getElementById('<%= lblMessage.ClientID %>');
-
-                    function getLocation() {
-                        if (navigator.geolocation) {
-                            navigator.geolocation.getCurrentPosition(showPosition, showError);
-                        } else {
-                            x.innerHTML = "Geolocation is not supported by this browser.";
-                        }
-                    }
-
-                    function showPosition(position) {
-
-                        document.getElementById('<%= txtLatitude.ClientID %>').value = position.coords.latitude;
-                    $('#<%= txtLatitude.ClientID%>').prop('readonly', true);
-                    document.getElementById('<%= txtLongitude.ClientID %>').value = position.coords.longitude;
-                    $('#<%= txtLongitude.ClientID%>').prop('readonly', true);
-                        document.getElementById('coords').hidden = false;
-                        var current = { lat: position.coords.latitude, lng: position.coords.longitude };
-                        var map = new google.maps.Map(
-                            document.getElementById('mapholder'), { zoom: 4, center: current });
-                        var marker = new google.maps.Marker({ position: current, map: map });
-                    }
-
-                    function showError(error) {
-                        switch (error.code) {
-                            case error.PERMISSION_DENIED:
-                                x.innerHTML = "User denied the request for Geolocation."
-                                break;
-                            case error.POSITION_UNAVAILABLE:
-                                x.innerHTML = "Location information is unavailable."
-                                break;
-                            case error.TIMEOUT:
-                                x.innerHTML = "The request to get user location timed out."
-                                break;
-                            case error.UNKNOWN_ERROR:
-                                x.innerHTML = "An unknown error occurred."
-                                break;
-                        }
-                    }
-                    function initMap() {
-                        // The location of Uluru
-                        var uluru = { lat: -25.344, lng: 131.036 };
-                        // The map, centered at Uluru
-                        var map = new google.maps.Map(
-                            document.getElementById('map'), { zoom: 4, center: uluru });
-                        // The marker, positioned at Uluru
-                        var marker = new google.maps.Marker({ position: uluru, map: map });
-                    }
-                </script>
-
-                <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu4Kt_LuqphKL8bVqQwMOyRVff7gLAXi4&callback=initMap">
-                </script>
             </div>
         </div>
+        <div id="mapholder"></div>
+        
+        <script>
+            var x = document.getElementById('<%= lblMessage.ClientID %>');
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition, showError);
+                } else {
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }
+
+            function showPosition(position) {
+
+                document.getElementById('<%= txtLatitude.ClientID %>').value = position.coords.latitude;
+                        $('#<%= txtLatitude.ClientID%>').prop('readonly', true);
+                        document.getElementById('<%= txtLongitude.ClientID %>').value = position.coords.longitude;
+                        $('#<%= txtLongitude.ClientID%>').prop('readonly', true);
+                document.getElementById('coords').hidden = false;
+                var current = { lat: position.coords.latitude, lng: position.coords.longitude };
+                var map = new google.maps.Map(
+                    document.getElementById('mapholder'), { zoom: 12, center: current });
+                var marker = new google.maps.Marker({ position: current, map: map });
+                map.hidden = false;
+            }
+
+            function showError(error) {
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        x.innerHTML = "User denied the request for Geolocation."
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        x.innerHTML = "Location information is unavailable."
+                        break;
+                    case error.TIMEOUT:
+                        x.innerHTML = "The request to get user location timed out."
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        x.innerHTML = "An unknown error occurred."
+                        break;
+                }
+            }
+            function initMap() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition, showError);
+                } else {
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }
+        </script>
+
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu4Kt_LuqphKL8bVqQwMOyRVff7gLAXi4&callback=initMap">
+        </script>
     </div>
 </asp:Content>
 
