@@ -194,17 +194,10 @@
                         break;
                 }
             }
-            function initMap() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showPosition, showError);
-                } else {
-                    x.innerHTML = "Geolocation is not supported by this browser.";
-                }
-            }
         </script>
 
         <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu4Kt_LuqphKL8bVqQwMOyRVff7gLAXi4&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu4Kt_LuqphKL8bVqQwMOyRVff7gLAXi4&callback=getLocation">
         </script>
     </div>
 </asp:Content>
