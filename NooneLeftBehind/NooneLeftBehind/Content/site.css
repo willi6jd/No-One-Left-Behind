@@ -35,6 +35,10 @@ textarea {
     }
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 main {
     padding-bottom: 50px;
 }

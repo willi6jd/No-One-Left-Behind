@@ -56,6 +56,30 @@
                 </div>
             </div>
             <div class="col-sm">
+                <h3>Contact Information</h3>
+                <div class="form-group">
+                    <label class="col control-label">First Name</label>
+                    <div class="col">
+                        <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col control-label">Last Name</label>
+                    <div class="col">
+                        <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col control-label">Phone number</label>
+                    <div class="col">
+                        <asp:TextBox ID="txtPhone" runat="server" TextMode="Phone" 
+                            CssClass="form-control"></asp:TextBox>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
                 <h3>Location Information</h3>
                 <div class="form-group">
                     <label class="col control-label">Street Address</label>
@@ -106,33 +130,14 @@
                         <asp:RequiredFieldValidator ID="rfvState" runat="server" ControlToValidate="txtState" CssClass="text-danger col-0" Text="*" ErrorMessage="State is Required."></asp:RequiredFieldValidator>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm">
-                <h3>Contact Information</h3>
-                <div class="form-group">
-                    <label class="col control-label">First Name</label>
-                    <div class="col">
-                        <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <label class="col control-label">Last Name</label>
+                <div class="form-group row col">
                     <div class="col">
-                        <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:Button ID="btnGetLocation" runat="server" Text="Reset Location"
+                            CssClass="btn btn-secondary form-control " OnClientClick="getLocation();return false;"   />
                     </div>
+                    <label class="col-0 control-label hidden" >*</label>
                 </div>
-
-                <div class="form-group">
-                    <label class="col control-label">Phone number</label>
-                    <div class="col">
-                        <asp:TextBox ID="txtPhone" runat="server" TextMode="Phone" 
-                            CssClass="form-control"></asp:TextBox>
-                    </div>
-                </div>
-
-                <asp:Button ID="btnGetLocation" runat="server" Text="Get Cooridinates"
-                    CssClass="btn btn-secondary" OnClientClick="getLocation();return false;"   />
                 <div id="coords" hidden="hidden">
                     <div class="form-group">
                         <label class="col control-label">Latitude</label>
@@ -170,7 +175,6 @@
                         $('#<%= txtLatitude.ClientID%>').prop('readonly', true);
                         document.getElementById('<%= txtLongitude.ClientID %>').value = position.coords.longitude;
                         $('#<%= txtLongitude.ClientID%>').prop('readonly', true);
-                document.getElementById('coords').hidden = false;
                 var current = { lat: position.coords.latitude, lng: position.coords.longitude };
                 var map = new google.maps.Map(
                     document.getElementById('mapholder'), { zoom: 12, center: current });
