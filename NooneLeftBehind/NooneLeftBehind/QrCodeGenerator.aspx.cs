@@ -45,36 +45,54 @@ namespace NooneLeftBehind
                             imgBarCode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
                         }
                         PlaceHolder1.Controls.Add(imgBarCode);
+                        SetAddressLabel();
                     }
                 }
             }
 
-            using (var db = new AzureNOLBContext())
-            {
-                var location = db.Locations
-                    .Where(x => x.StreetAddress == txtStreetAddress.Text.Trim()
-                    && x.City == txtCity.Text.Trim()
-                    && x.State == txtState.Text.Trim()
-                    && x.Floor == txtFloor.Text.Trim()
-                    && x.RoomNumber == txtRoom.Text.Trim())
-                    .SingleOrDefault();
+            //using (var db = new AzureNOLBContext())
+            //{
+            //    var location = db.Locations
+            //        .Where(x => x.StreetAddress == txtStreetAddress.Text.Trim()
+            //        && x.City == txtCity.Text.Trim()
+            //        && x.State == txtState.Text.Trim()
+            //        && x.Floor == txtFloor.Text.Trim()
+            //        && x.RoomNumber == txtRoom.Text.Trim())
+            //        .SingleOrDefault();
 
-                if (location == null)
-                {
-                    location = new Location
-                    {
-                        City = txtCity.Text.Trim(),
-                        Floor = txtFloor.Text.Trim(),
-                        RoomNumber = txtRoom.Text.Trim(),
-                        StreetAddress = txtStreetAddress.Text.Trim(),
-                        State = txtState.Text.Trim()
-                    };
+            //    if (location == null)
+            //    {
+            //        location = new Location
+            //        {
+            //            City = txtCity.Text.Trim(),
+            //            Floor = txtFloor.Text.Trim(),
+            //            RoomNumber = txtRoom.Text.Trim(),
+            //            StreetAddress = txtStreetAddress.Text.Trim(),
+            //            State = txtState.Text.Trim()
+            //        };
 
-                    db.Locations.Add(location);
-                    db.SaveChanges();
-                }
+            //        db.Locations.Add(location);
+            //        db.SaveChanges();
+            //    }
                                               
-            }
+            //}
+        }
+
+        private void SetAddressLabel()
+        {
+            var parameters = new List<string>();
+            if (!string.IsNullOrWhiteSpace(txtStreetAddress.Text))
+                parameters.Add($"{txtStreetAddress.Text}<br/>");
+            if (!string.IsNullOrWhiteSpace(txtFloor.Text))
+                parameters.Add($"Floor {txtFloor.Text}{(string.IsNullOrWhiteSpace(txtRoom.Text) ? "<br/>" : ",")}");
+            if (!string.IsNullOrWhiteSpace(txtRoom.Text))
+                parameters.Add($"Room {txtRoom.Text}<br/>");
+            if (!string.IsNullOrWhiteSpace(txtCity.Text))
+                parameters.Add($"{txtCity.Text},");
+            if (!string.IsNullOrWhiteSpace(txtState.Text))
+                parameters.Add($"{txtState.Text}");
+            var address = string.Join(" ", parameters);
+            labelQrAddress.Text = address;
         }
 
         private string GenerateQrCodeString()

@@ -96,6 +96,15 @@ namespace NooneLeftBehind
         protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
 
         /// <summary>
+        /// labelQrAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelQrAddress;
+
+        /// <summary>
         /// btnSubmitQR control.
         /// </summary>
         /// <remarks>

@@ -59,6 +59,9 @@
             <div class="col-md">             
                 <div class="align-middle">                 
                     <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                    <div class="qrLabel">
+                        <asp:Label ID="labelQrAddress" runat="server" CssClass="control-label" Text=""></asp:Label>
+                    </div>
                 </div>
             </div>
         </div>
