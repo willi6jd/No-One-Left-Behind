@@ -190,25 +190,23 @@
                         if (this.readyState == 4 && this.status == 200) {
                             var json = JSON.parse(this.responseText)
 
-                            if (confirm("Update location from map?")) {
-                                var addressComponents = json.results[0].address_components;
-                                var length = addressComponents.length;
+                            var addressComponents = json.results[0].address_components;
+                            var length = addressComponents.length;
 
-                                function getAttribute(components, componentName, numComponents) {
-                                    for (var i = 0; i < numComponents; i++) {
-                                        if (components[i].types[0] == componentName) {
-                                            return components[i].long_name;
-                                        }
+                            function getAttribute(components, componentName, numComponents) {
+                                for (var i = 0; i < numComponents; i++) {
+                                    if (components[i].types[0] == componentName) {
+                                        return components[i].long_name;
                                     }
-                                    return '';
                                 }
-
-                                document.getElementById('<%= txtStreetAddress.ClientID %>').value = getAttribute(addressComponents, 'street_number', length) + ' ' + getAttribute(addressComponents, 'route', length);
-                                document.getElementById('<%= txtFloor.ClientID %>').value = '';
-                                document.getElementById('<%= txtRoom.ClientID %>').value = '';
-                                document.getElementById('<%= txtCity.ClientID %>').value = getAttribute(addressComponents, 'locality', length);
-                                document.getElementById('<%= txtState.ClientID %>').value = getAttribute(addressComponents, 'administrative_area_level_1', length);
+                                return '';
                             }
+
+                            document.getElementById('<%= txtStreetAddress.ClientID %>').value = getAttribute(addressComponents, 'street_number', length) + ' ' + getAttribute(addressComponents, 'route', length);
+                            document.getElementById('<%= txtFloor.ClientID %>').value = '';
+                            document.getElementById('<%= txtRoom.ClientID %>').value = '';
+                            document.getElementById('<%= txtCity.ClientID %>').value = getAttribute(addressComponents, 'locality', length);
+                            document.getElementById('<%= txtState.ClientID %>').value = getAttribute(addressComponents, 'administrative_area_level_1', length);
                         }
                     };
                     xhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + current.lat + "," + current.lng + "&key=AIzaSyDJMGSnCwy_bUIRknvh2mUxhynP30nC468", true);
