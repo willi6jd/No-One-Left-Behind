@@ -39,7 +39,41 @@ main {
     padding-bottom: 50px;
 }
 
-.qrLabel {
-    text-align: center;
-    width: 400px;
+@media screen {
+    .form {
+        visibility: visible;
+    }
+
+    .print {
+        display: none;
+    }
+
+    .qrLabel {
+        text-align: center;
+        width: 400px;
+    }
+}
+
+@media print {
+    .form {
+        display: none;
+    }
+
+    .print {
+        visibility: visible;
+        width: 100%;
+        position: absolute;
+    }
+
+    .qrLabel {
+        text-align: center;
+        width: 800px;
+    }
+
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 800px;
+    }
 }

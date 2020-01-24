@@ -47,35 +47,52 @@ namespace NooneLeftBehind
                         PlaceHolder1.Controls.Add(imgBarCode);
                         SetAddressLabel();
                     }
+                    //Images qrCode and determines dimmensions
+                    var imgBarCodePrint = new System.Web.UI.WebControls.Image
+                    {
+                        Height = 800,
+                        Width = 800
+                    };
+                    using (Bitmap bitMap = code.GetGraphic(20))
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            bitMap.Save(ms, ImageFormat.Png);
+                            var byteImage = ms.ToArray();
+                            imgBarCodePrint.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
+                        }
+                        PlaceHolder2.Controls.Add(imgBarCodePrint);
+                        SetAddressLabel();
+                    }
                 }
             }
 
-            //using (var db = new AzureNOLBContext())
-            //{
-            //    var location = db.Locations
-            //        .Where(x => x.StreetAddress == txtStreetAddress.Text.Trim()
-            //        && x.City == txtCity.Text.Trim()
-            //        && x.State == txtState.Text.Trim()
-            //        && x.Floor == txtFloor.Text.Trim()
-            //        && x.RoomNumber == txtRoom.Text.Trim())
-            //        .SingleOrDefault();
+            using (var db = new AzureNOLBContext())
+            {
+                var location = db.Locations
+                    .Where(x => x.StreetAddress == txtStreetAddress.Text.Trim()
+                    && x.City == txtCity.Text.Trim()
+                    && x.State == txtState.Text.Trim()
+                    && x.Floor == txtFloor.Text.Trim()
+                    && x.RoomNumber == txtRoom.Text.Trim())
+                    .SingleOrDefault();
 
-            //    if (location == null)
-            //    {
-            //        location = new Location
-            //        {
-            //            City = txtCity.Text.Trim(),
-            //            Floor = txtFloor.Text.Trim(),
-            //            RoomNumber = txtRoom.Text.Trim(),
-            //            StreetAddress = txtStreetAddress.Text.Trim(),
-            //            State = txtState.Text.Trim()
-            //        };
+                if (location == null)
+                {
+                    location = new Location
+                    {
+                        City = txtCity.Text.Trim(),
+                        Floor = txtFloor.Text.Trim(),
+                        RoomNumber = txtRoom.Text.Trim(),
+                        StreetAddress = txtStreetAddress.Text.Trim(),
+                        State = txtState.Text.Trim()
+                    };
 
-            //        db.Locations.Add(location);
-            //        db.SaveChanges();
-            //    }
-                                              
-            //}
+                    db.Locations.Add(location);
+                    db.SaveChanges();
+                }
+
+            }
         }
 
         private void SetAddressLabel()
@@ -93,6 +110,7 @@ namespace NooneLeftBehind
                 parameters.Add($"{txtState.Text}");
             var address = string.Join(" ", parameters);
             labelQrAddress.Text = address;
+            labelQrAddressPrint.Text = address;
         }
 
         private string GenerateQrCodeString()

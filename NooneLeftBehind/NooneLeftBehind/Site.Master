@@ -16,7 +16,7 @@
 
 </head>
 <body>
-    <form id="form1" runat="server" class="form-horizontal">
+    <form id="form1" runat="server" class="form-horizontal form">
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -61,8 +61,8 @@
             <main>
                 <asp:ContentPlaceHolder ID="mainPlaceHolder" runat="server"></asp:ContentPlaceHolder>    
             </main>
-
         </div>
     </form>
+    <asp:ContentPlaceHolder ID="printPlaceHolder" runat="server"></asp:ContentPlaceHolder>  
 </body>
 </html>
