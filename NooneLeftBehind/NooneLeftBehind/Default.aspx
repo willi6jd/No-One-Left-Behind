@@ -177,6 +177,36 @@
                 var marker = new google.maps.Marker({ position: current, map: map, draggable: true });
                 map.hidden = false;
 
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var json = JSON.parse(this.responseText)
+
+                        if (confirm("Update location from map?")) {
+                            var addressComponents = json.results[0].address_components;
+                            var length = addressComponents.length;
+
+                            function getAttribute(components, componentName, numComponents) {
+                                for (var i = 0; i < numComponents; i++) {
+                                    if (components[i].types[0] == componentName) {
+                                        console.log(components);
+                                        return components[i].long_name;
+                                    }
+                                }
+                                return '';
+                            }
+
+                            document.getElementById('<%= txtStreetAddress.ClientID %>').value = getAttribute(addressComponents, 'street_number', length) + ' ' + getAttribute(addressComponents, 'route', length);
+                            document.getElementById('<%= txtFloor.ClientID %>').value = '';
+                            document.getElementById('<%= txtRoom.ClientID %>').value = '';
+                            document.getElementById('<%= txtCity.ClientID %>').value = getAttribute(addressComponents, 'locality', length);
+                            document.getElementById('<%= txtState.ClientID %>').value = getAttribute(addressComponents, 'administrative_area_level_1', length);
+                        }
+                    }
+                };
+                xhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + current.lat + "," + current.lng + "&key=AIzaSyDJMGSnCwy_bUIRknvh2mUxhynP30nC468", true);
+                xhttp.send();
+
                 google.maps.event.addListener(marker, 'dragend', function (evt) {
                     document.getElementById('<%= txtLatitude.ClientID %>').value = evt.latLng.lat().toFixed(8);
                     document.getElementById('<%= txtLongitude.ClientID %>').value = evt.latLng.lng().toFixed(8);
