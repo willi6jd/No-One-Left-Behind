@@ -174,8 +174,13 @@
                 var current = { lat: position.coords.latitude, lng: position.coords.longitude };
                 var map = new google.maps.Map(
                     document.getElementById('mapholder'), { zoom: 12, center: current });
-                var marker = new google.maps.Marker({ position: current, map: map });
+                var marker = new google.maps.Marker({ position: current, map: map, draggable: true });
                 map.hidden = false;
+
+                google.maps.event.addListener(marker, 'dragend', function (evt) {
+                    document.getElementById('<%= txtLatitude.ClientID %>').value = evt.latLng.lat().toFixed(8);
+                    document.getElementById('<%= txtLongitude.ClientID %>').value = evt.latLng.lng().toFixed(8);
+                });
             }
 
             function showError(error) {
