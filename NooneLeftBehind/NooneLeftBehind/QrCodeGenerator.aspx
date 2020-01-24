@@ -4,7 +4,7 @@
     <div class="container" style="padding-top: 10px;">
         <h1>QR Code Generator</h1>
         <div class="row">
-            <div class="col-md">
+            <div class="col-md ">
                 <h3>Location Information</h3>
                 <div class="form-group">
                     <label class="col control-label">Street Address</label>
@@ -59,6 +59,9 @@
             <div class="col-md">             
                 <div class="align-middle">                 
                     <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                    <div class="qrLabel">
+                        <asp:Label ID="labelQrAddress" runat="server" CssClass="control-label" Text=""></asp:Label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -81,4 +84,14 @@
     </div>
 </asp:Content>
 
+<asp:Content runat="server" ContentPlaceHolderID="printPlaceHolder">
+    <div class="print">             
+        <div class="align-middle center">                 
+            <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
+            <div class="qrLabel">
+                <asp:Label ID="labelQrAddressPrint" runat="server" CssClass="control-label" Text=""></asp:Label>
+            </div>
+        </div>
+    </div>
+</asp:Content>
          

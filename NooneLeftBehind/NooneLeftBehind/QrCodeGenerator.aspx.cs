@@ -45,6 +45,24 @@ namespace NooneLeftBehind
                             imgBarCode.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
                         }
                         PlaceHolder1.Controls.Add(imgBarCode);
+                        SetAddressLabel();
+                    }
+                    //Images qrCode and determines dimmensions
+                    var imgBarCodePrint = new System.Web.UI.WebControls.Image
+                    {
+                        Height = 800,
+                        Width = 800
+                    };
+                    using (Bitmap bitMap = code.GetGraphic(20))
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            bitMap.Save(ms, ImageFormat.Png);
+                            var byteImage = ms.ToArray();
+                            imgBarCodePrint.ImageUrl = "data:image/png;base64," + Convert.ToBase64String(byteImage);
+                        }
+                        PlaceHolder2.Controls.Add(imgBarCodePrint);
+                        SetAddressLabel();
                     }
                 }
             }
@@ -73,8 +91,26 @@ namespace NooneLeftBehind
                     db.Locations.Add(location);
                     db.SaveChanges();
                 }
-                                              
+
             }
+        }
+
+        private void SetAddressLabel()
+        {
+            var parameters = new List<string>();
+            if (!string.IsNullOrWhiteSpace(txtStreetAddress.Text))
+                parameters.Add($"{txtStreetAddress.Text}<br/>");
+            if (!string.IsNullOrWhiteSpace(txtFloor.Text))
+                parameters.Add($"Floor {txtFloor.Text}{(string.IsNullOrWhiteSpace(txtRoom.Text) ? "<br/>" : ",")}");
+            if (!string.IsNullOrWhiteSpace(txtRoom.Text))
+                parameters.Add($"Room {txtRoom.Text}<br/>");
+            if (!string.IsNullOrWhiteSpace(txtCity.Text))
+                parameters.Add($"{txtCity.Text},");
+            if (!string.IsNullOrWhiteSpace(txtState.Text))
+                parameters.Add($"{txtState.Text}");
+            var address = string.Join(" ", parameters);
+            labelQrAddress.Text = address;
+            labelQrAddressPrint.Text = address;
         }
 
         private string GenerateQrCodeString()
