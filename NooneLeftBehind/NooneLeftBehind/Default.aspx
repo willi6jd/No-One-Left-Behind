@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-sm">
                 <h3>Request Information</h3>
-                <div class="form-group">
+                <div class="form-group no-display">
                     <label class="col control-label">Date</label>
                     <div class="col">
                         <asp:TextBox ID="txtDate" runat="server" TextMode="DateTime" ReadOnly="true"
