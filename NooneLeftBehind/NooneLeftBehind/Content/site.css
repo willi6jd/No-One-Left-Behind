@@ -81,3 +81,7 @@ main {
         width: 800px;
     }
 }
+
+.no-display {
+    display: none;
+}
