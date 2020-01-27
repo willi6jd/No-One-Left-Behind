@@ -25,7 +25,7 @@ IF (NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = 'N
 BEGIN
 	CREATE TABLE [Requests](
 		[RequestID] [int] NOT NULL IDENTITY PRIMARY KEY,
-		[TimeStamp] [datetime2] NOT NULL,
+		[TimeStamp] [datetimeoffset] NOT NULL,
 		[TypeOfEmergency] [varchar](50) NOT NULL,
 		[NumberOfPeople] [int] NULL,
 		[NumberOfImmobilePeople] [int] NULL,

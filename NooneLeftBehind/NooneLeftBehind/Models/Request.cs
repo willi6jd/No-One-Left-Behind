@@ -10,8 +10,7 @@ namespace NooneLeftBehind.Models
     {
         public int RequestID { get; set; }
 
-        [Column(TypeName = "datetime2")]
-        public DateTime TimeStamp { get; set; }
+        public DateTimeOffset TimeStamp { get; set; }
 
         [Required]
         [StringLength(50)]

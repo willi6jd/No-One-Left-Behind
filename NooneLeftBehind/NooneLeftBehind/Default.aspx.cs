@@ -17,7 +17,7 @@ namespace NooneLeftBehind
 
             if (!IsPostBack)
             {
-                txtDate.Text = DateTime.Now.ToString();
+                txtDate.Text = DateTimeOffset.Now.ToString();
             }
 
             if (Request.QueryString["StreetAddress"] != null)
@@ -58,7 +58,7 @@ namespace NooneLeftBehind
 
                 var newRequest = new Request
                 {
-                    TimeStamp = Convert.ToDateTime(txtDate.Text),
+                    TimeStamp = DateTimeOffset.Parse(txtDate.Text),
                     TypeOfEmergency = ddlTypeOfEmergency.SelectedValue,
                     NumberOfPeople = int.TryParse(txtNumOfPeople.Text, out int numOfPeople) ? numOfPeople : 0,
                     NumberOfImmobilePeople = int.TryParse(txtNumOfImmobile.Text, out int numOfImmobile) ? numOfImmobile : 0,

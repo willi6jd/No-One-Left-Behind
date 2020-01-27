@@ -157,7 +157,16 @@
             </div>
         </div>
         <div id="mapholder"></div>
-        
+        <script>
+            var offset = (new Date().getTimezoneOffset() / 60) * (-1);
+            var x = document.getElementById('<%= txtDate.ClientID %>');
+            var am = x.value.search("AM");
+            var pm = x.value.search("PM");
+            if (am != -1)
+                x.value = x.value.substring(0, am) + offset;
+            else if (pm != -1)
+                x.value = x.value.substring(0, pm) + offset;
+        </script>
         <script>
             var x = document.getElementById('<%= lblMessage.ClientID %>');
 
@@ -271,7 +280,7 @@
         </script>
 
         <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu4Kt_LuqphKL8bVqQwMOyRVff7gLAXi4&callback=getLocation">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu4Kt_LuqphKL8bVqQwMOyRVff7gLAXi4&callback=getLocation">
         </script>
     </div>
 </asp:Content>
