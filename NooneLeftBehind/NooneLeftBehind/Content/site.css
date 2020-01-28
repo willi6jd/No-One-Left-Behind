@@ -85,3 +85,8 @@ main {
 .no-display {
     display: none;
 }
+
+.error {
+    border-color: red;
+    border-width: 3px;
+}

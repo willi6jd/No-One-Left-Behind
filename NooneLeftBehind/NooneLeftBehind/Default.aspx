@@ -95,60 +95,49 @@
                 <h3>Location Information</h3>
                 <div class="form-group">
                     <label class="col control-label">Street Address</label>
-                    <div class="row col">
-                        <div class="col">
-                            <asp:TextBox ID="txtStreetAddress" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                        <asp:RequiredFieldValidator ID="rfvStreetAddress" runat="server" ControlToValidate="txtStreetAddress" CssClass="text-danger col-0" Text="*" ErrorMessage="Street Address is Required."></asp:RequiredFieldValidator>
+                    <div class="col">
+                        <asp:TextBox ID="txtStreetAddress" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvStreetAddress" runat="server" ControlToValidate="txtStreetAddress" CssClass=" no-display text-danger col-0" Text="*" ErrorMessage="Street Address is Required."></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col control-label">Room Number</label>
-                    <div class="row col">
-                        <div class="col">
-                            <asp:TextBox ID="txtRoom" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                        <div class="col-0 hidden" style="visibility: hidden;">*</div>
+                    <div class="col">
+                        <asp:TextBox ID="txtRoom" runat="server" CssClass="form-control"></asp:TextBox>
+                        <div class="col-0 hidden no-display " style="visibility: hidden;">*</div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col control-label">Floor</label>
-                    <div class="row col">
-                        <div class="col">
-                            <asp:TextBox ID="txtFloor" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                        <div class="col-0 hidden" style="visibility: hidden;">*</div>
+                    <div class="col">
+                        <asp:TextBox ID="txtFloor" runat="server" CssClass="form-control"></asp:TextBox>
+                        <div class="col-0 hidden no-display " style="visibility: hidden;">*</div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col control-label">City</label>
-                    <div class="row col">
-                        <div class="col">
-                            <asp:TextBox ID="txtCity" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                        <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity" CssClass="text-danger col-0" Text="*" ErrorMessage="City is Required."></asp:RequiredFieldValidator>
+                    <div class="col">
+                        <asp:TextBox ID="txtCity" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvCity" runat="server" ControlToValidate="txtCity" CssClass="no-display text-danger col-0" Text="*" ErrorMessage="City is Required."></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col control-label">State</label>
-                    <div class="row col">
-                        <div class="col">
-                            <asp:TextBox ID="txtState" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                        <asp:RequiredFieldValidator ID="rfvState" runat="server" ControlToValidate="txtState" CssClass="text-danger col-0" Text="*" ErrorMessage="State is Required."></asp:RequiredFieldValidator>
+                    <div class="col">
+                        <asp:TextBox ID="txtState" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvState" runat="server" ControlToValidate="txtState" CssClass="no-display text-danger col-0" Text="*" ErrorMessage="State is Required."></asp:RequiredFieldValidator>
                     </div>
                 </div>
 
-                <div class="form-group row col">
+                <div class="form-group">
                     <div class="col">
                         <asp:Button ID="btnGetLocation" runat="server" Text="Reset Location"
                             CssClass="btn btn-secondary form-control " OnClientClick="getLocation();return false;"   />
                     </div>
-                    <label class="col-0 control-label hidden" >*</label>
                 </div>
                 <div id="coords" hidden="hidden">
                     <div class="form-group">
@@ -169,6 +158,27 @@
             </div>
         </div>
         <div id="mapholder"></div>
+        <script>
+            function UpgradeASPNETValidation() {
+                if (typeof (Page_ClientValidate) != "undefined") {
+                    AspValidatorUpdateDisplay = ValidatorUpdateDisplay;
+                    ValidatorUpdateDisplay = NicerValidatorUpdateDisplay;
+                }
+            }
+
+            function NicerValidatorUpdateDisplay(val) {
+                AspValidatorUpdateDisplay(val);
+
+                // Add our custom display of validation errors
+                if (val.isvalid) {
+                    $('#' + val.controltovalidate).closest('.form-control').removeClass('error');
+                } else {
+                    $('#' + val.controltovalidate).closest('.form-control').addClass('error');
+                }
+            }
+
+            $(document).ready(UpgradeASPNETValidation);
+        </script>
         <script>
             $('#slider-num-of-people').ionRangeSlider({
                 skin: "big",
@@ -255,6 +265,7 @@
                             document.getElementById('<%= txtRoom.ClientID %>').value = '';
                             document.getElementById('<%= txtCity.ClientID %>').value = getAttribute(addressComponents, 'locality', length);
                             document.getElementById('<%= txtState.ClientID %>').value = getAttribute(addressComponents, 'administrative_area_level_1', length);
+                            Page_ClientValidate();
                         }
                     };
                     xhttp.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + current.lat + "," + current.lng + "&key=AIzaSyDJMGSnCwy_bUIRknvh2mUxhynP30nC468", true);
@@ -287,6 +298,7 @@
                                 document.getElementById('<%= txtRoom.ClientID %>').value = '';
                                 document.getElementById('<%= txtCity.ClientID %>').value = getAttribute(addressComponents, 'locality', length);
                                 document.getElementById('<%= txtState.ClientID %>').value = getAttribute(addressComponents, 'administrative_area_level_1', length);
+                                Page_ClientValidate();
                             }
                         }
                     };
