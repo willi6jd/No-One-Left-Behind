@@ -90,3 +90,8 @@ main {
     border-color: red;
     border-width: 3px;
 }
+
+.form-buttons {
+    margin-bottom: -10px;
+    margin-top: 5px;
+}

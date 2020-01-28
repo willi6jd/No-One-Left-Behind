@@ -332,7 +332,7 @@
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="footerPlaceHolder">
-    <div class="container">
+    <div class="container form-buttons">
     <%-- Submit and Clear buttons --%>
         <div class="form-group">
             <div class="col-offset col">
