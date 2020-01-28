@@ -18,6 +18,7 @@ namespace NooneLeftBehind
             if (!IsPostBack)
             {
                 hdnDateTime.Value = DateTimeOffset.Now.ToString();
+                hdnTypeOfEmergency.Value = "Uknown";
             }
 
             if (Request.QueryString["StreetAddress"] != null)
@@ -58,7 +59,7 @@ namespace NooneLeftBehind
 
                 var newRequest = new Request
                 {
-                    TypeOfEmergency = ddlTypeOfEmergency.SelectedValue,
+                    TypeOfEmergency = hdnTypeOfEmergency.Value,
                     NumberOfPeople = int.TryParse(hdnNumOfPeople.Value, out int numOfPeople) ? numOfPeople : 0,
                     NumberOfImmobilePeople = int.TryParse(hdnNumOfImmobilePeople.Value, out int numOfImmobile) ? numOfImmobile : 0,
                     InjuriesOrOtherInfo = txtInjuriesOrSpecialInfo.Text,
@@ -79,6 +80,9 @@ namespace NooneLeftBehind
                 db.SaveChanges();
 
                 lblMessage.Text = "Request Successfully Submitted.";
+
+                hdnDateTime.Value = DateTimeOffset.Now.ToString();
+                hdnTypeOfEmergency.Value = "Uknown";
             }
         }
 
@@ -90,7 +94,6 @@ namespace NooneLeftBehind
             {
                 control.Text = string.Empty;
             }
-            ddlTypeOfEmergency.SelectedIndex = 0;
             lblMessage.Text = String.Empty;
         }
     }

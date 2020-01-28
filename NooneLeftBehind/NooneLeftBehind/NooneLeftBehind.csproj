@@ -124,6 +124,12 @@
     <Content Include="Content\Site.css" />
     <Content Include="DispatchView.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Images\ambulance.png" />
+    <Content Include="Images\fire.png" />
+    <Content Include="Images\flood.png" />
+    <Content Include="Images\gun.png" />
+    <Content Include="Images\question-mark.png" />
+    <Content Include="Images\tornado.png" />
     <Content Include="packages.config" />
     <Content Include="QrCodeGenerator.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />

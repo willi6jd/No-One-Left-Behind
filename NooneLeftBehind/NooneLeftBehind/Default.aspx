@@ -18,13 +18,13 @@
                 <div class="form-group">
                     <label class="col control-label">Type of Emergency</label>
                     <div class="col">
-                        <asp:DropDownList ID="ddlTypeOfEmergency" runat="server" CssClass="form-control">
-                            <asp:ListItem>Fire</asp:ListItem>
-                            <asp:ListItem>Active Shooter</asp:ListItem>
-                            <asp:ListItem>Tornado</asp:ListItem>
-                            <asp:ListItem>Flood</asp:ListItem>
-                            <asp:ListItem>Medical Emergency</asp:ListItem>
-                        </asp:DropDownList>
+                        <asp:ImageButton ID="ibtnFire" runat="server" AlternateText="Fire" CssClass="type-of-emergency" ImageUrl="images/fire.png" Width="42" Height="65" onClientClick="OnTypeOfEmergencyClick(this);return false;"/>
+                        <asp:ImageButton ID="ibtnGun" runat="server" AlternateText="Active Shooter" CssClass="type-of-emergency" ImageUrl="images/gun.png" Width="42" Height="65" onClientClick="OnTypeOfEmergencyClick(this);return false;"/>
+                        <asp:ImageButton ID="ibtnTornado" runat="server" AlternateText="Tornado" CssClass="type-of-emergency" ImageUrl="images/tornado.png" Width="42" Height="65" onClientClick="OnTypeOfEmergencyClick(this);return false;"/>
+                        <asp:ImageButton ID="ibtnFlood" runat="server" AlternateText="Flood" CssClass="type-of-emergency" ImageUrl="images/flood.png" Width="42" Height="65" onClientClick="OnTypeOfEmergencyClick(this);return false;"/>
+                        <asp:ImageButton ID="ibtnAmbulance" runat="server" AlternateText="Medical Emergency" CssClass="type-of-emergency" ImageUrl="images/ambulance.png" Width="42" Height="65" onClientClick="OnTypeOfEmergencyClick(this);return false;"/>
+                        <asp:ImageButton ID="ibtnQuestion" runat="server" AlternateText="Unknown" CssClass="type-of-emergency selected" ImageUrl="images/question-mark.png" Width="42" Height="65" onClientClick="OnTypeOfEmergencyClick(this);return false;"/>
+                        <asp:HiddenField ID="hdnTypeOfEmergency" runat="server" Value="Unknown"/>
                     </div>
                 </div>
         
@@ -60,7 +60,7 @@
                     </div>
                 </div>
         
-                <div class="form-group">
+                <div class="form-group no-display">
                     <label class="col control-label">Accessible Outside Window?</label>
                     <div class="col">
                         <asp:CheckBox ID="cbOutsideWindow" runat="server" CssClass="form-check"/>
@@ -158,6 +158,19 @@
             </div>
         </div>
         <div id="mapholder"></div>
+        <script>
+            function OnTypeOfEmergencyClick(imageButton) {
+                var x = document.getElementsByClassName("type-of-emergency");
+                for (var i = 0; i < x.length; i++) {
+                    $('#' + x[i].id).removeClass('selected');
+                }
+
+                $('#' + imageButton.id).addClass('selected');
+                var x = document.getElementById('<%= hdnTypeOfEmergency.ClientID %>');
+                x.value = imageButton.alt;
+                console.log(x.value);
+            }
+        </script>
         <script>
             function UpgradeASPNETValidation() {
                 if (typeof (Page_ClientValidate) != "undefined") {

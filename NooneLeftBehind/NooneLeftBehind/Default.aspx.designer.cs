@@ -33,13 +33,67 @@ namespace NooneLeftBehind
         protected global::System.Web.UI.WebControls.HiddenField hdnTimeOffset;
 
         /// <summary>
-        /// ddlTypeOfEmergency control.
+        /// ibtnFire control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTypeOfEmergency;
+        protected global::System.Web.UI.WebControls.ImageButton ibtnFire;
+
+        /// <summary>
+        /// ibtnGun control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ibtnGun;
+
+        /// <summary>
+        /// ibtnTornado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ibtnTornado;
+
+        /// <summary>
+        /// ibtnFlood control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ibtnFlood;
+
+        /// <summary>
+        /// ibtnAmbulance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ibtnAmbulance;
+
+        /// <summary>
+        /// ibtnQuestion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton ibtnQuestion;
+
+        /// <summary>
+        /// hdnTypeOfEmergency control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnTypeOfEmergency;
 
         /// <summary>
         /// hdnNumOfPeople control.

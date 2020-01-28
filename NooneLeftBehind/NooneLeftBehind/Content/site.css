@@ -95,3 +95,9 @@ main {
     margin-bottom: -10px;
     margin-top: 5px;
 }
+
+.selected {
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+}
