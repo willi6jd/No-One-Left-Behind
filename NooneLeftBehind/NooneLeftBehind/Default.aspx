@@ -8,8 +8,10 @@
                 <div class="form-group no-display">
                     <label class="col control-label">Date</label>
                     <div class="col">
-                        <asp:TextBox ID="txtDate" runat="server" TextMode="DateTime" ReadOnly="true"
-                                CssClass="form-control"></asp:TextBox>
+                        <asp:HiddenField ID="hdnDateTime" ClientIDMode="Static" runat="server" 
+                                Value="" />
+                        <asp:HiddenField ID="hdnTimeOffset" ClientIDMode="Static" runat="server" 
+                                Value="" />
                     </div>
 
                 </div>
@@ -158,14 +160,17 @@
         </div>
         <div id="mapholder"></div>
         <script>
+            var hdnOffset = document.getElementById('<%= hdnTimeOffset.ClientID %>');
+            var x = document.getElementById('<%= hdnDateTime.ClientID %>');
+
             var offset = (new Date().getTimezoneOffset() / 60) * (-1);
-            var x = document.getElementById('<%= txtDate.ClientID %>');
+            hdnOffset.value = offset;
             var am = x.value.search("AM");
             var pm = x.value.search("PM");
             if (am != -1)
-                x.value = x.value.substring(0, am) + offset;
+                x.value = x.value.substring(0, am + 3) + offset;
             else if (pm != -1)
-                x.value = x.value.substring(0, pm) + offset;
+                x.value = x.value.substring(0, pm + 3) + offset;
         </script>
         <script>
             var x = document.getElementById('<%= lblMessage.ClientID %>');
@@ -241,7 +246,6 @@
                                 function getAttribute(components, componentName, numComponents) {
                                     for (var i = 0; i < numComponents; i++) {
                                         if (components[i].types[0] == componentName) {
-                                            console.log(components);
                                             return components[i].long_name;
                                         }
                                     }
