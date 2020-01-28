@@ -29,16 +29,26 @@
                 </div>
         
                 <div class="form-group">
-                    <label class="col control-label">Number of People</label>
-                    <div class="col">
-                        <asp:TextBox ID="txtNumOfPeople" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                    <div class="col">                        
+                        <label class="control-label">Number of People</label>
+                        <asp:HiddenField ID="hdnNumOfPeople" ClientIDMode="Static" runat="server" 
+                                Value="" />
+                    </div>
+                    <div class="col-xl-11">
+                        <input id="slider-num-of-people" data-slider-id='slider-num-of-people-slider' 
+                            type="text" data-slider-min="0" data-slider-max="50" data-slider-step="1" data-slider-value="0" />
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col control-label">Number of Immobile People</label>
-                    <div class="col">
-                        <asp:TextBox ID="txtNumOfImmobile" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                    <div class="col">                        
+                        <label class="control-label">Number of Immobile People</label>
+                        <asp:HiddenField ID="hdnNumOfImmobilePeople" ClientIDMode="Static" runat="server" 
+                                Value="" />
+                    </div>
+                    <div class="col-xl-11">
+                        <input id="slider-num-of-immobile-people" data-slider-id='slider-num-of-immobile-people-slider' 
+                            type="text" data-slider-min="0" data-slider-max="50" data-slider-step="1" data-slider-value="0"/>
                     </div>
                 </div>
 
@@ -159,6 +169,26 @@
             </div>
         </div>
         <div id="mapholder"></div>
+        <script>
+            $('#slider-num-of-people').ionRangeSlider({
+                skin: "big",
+                min: 0,
+                max: 50,
+                max_postfix: "+",
+                onChange: function (data) {
+                    document.getElementById('<%= hdnNumOfPeople.ClientID %>').value = data.from;
+                }
+            });
+            $('#slider-num-of-immobile-people').ionRangeSlider({
+                skin: "big",
+                min: 0,
+                max: 50,
+                max_postfix: "+",
+                onChange: function (data) {
+                    document.getElementById('<%= hdnNumOfImmobilePeople.ClientID %>').value = data.from;
+                }
+            });
+        </script>
         <script>
             var hdnOffset = document.getElementById('<%= hdnTimeOffset.ClientID %>');
             var x = document.getElementById('<%= hdnDateTime.ClientID %>');

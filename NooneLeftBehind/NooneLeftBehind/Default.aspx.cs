@@ -59,8 +59,8 @@ namespace NooneLeftBehind
                 var newRequest = new Request
                 {
                     TypeOfEmergency = ddlTypeOfEmergency.SelectedValue,
-                    NumberOfPeople = int.TryParse(txtNumOfPeople.Text, out int numOfPeople) ? numOfPeople : 0,
-                    NumberOfImmobilePeople = int.TryParse(txtNumOfImmobile.Text, out int numOfImmobile) ? numOfImmobile : 0,
+                    NumberOfPeople = int.TryParse(hdnNumOfPeople.Value, out int numOfPeople) ? numOfPeople : 0,
+                    NumberOfImmobilePeople = int.TryParse(hdnNumOfImmobilePeople.Value, out int numOfImmobile) ? numOfImmobile : 0,
                     InjuriesOrOtherInfo = txtInjuriesOrSpecialInfo.Text,
                     AccessibleOutsideWindow = cbOutsideWindow.Checked,
                     FirstName = txtFirstName.Text,

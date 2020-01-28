@@ -42,22 +42,22 @@ namespace NooneLeftBehind
         protected global::System.Web.UI.WebControls.DropDownList ddlTypeOfEmergency;
 
         /// <summary>
-        /// txtNumOfPeople control.
+        /// hdnNumOfPeople control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNumOfPeople;
+        protected global::System.Web.UI.WebControls.HiddenField hdnNumOfPeople;
 
         /// <summary>
-        /// txtNumOfImmobile control.
+        /// hdnNumOfImmobilePeople control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNumOfImmobile;
+        protected global::System.Web.UI.WebControls.HiddenField hdnNumOfImmobilePeople;
 
         /// <summary>
         /// txtInjuriesOrSpecialInfo control.

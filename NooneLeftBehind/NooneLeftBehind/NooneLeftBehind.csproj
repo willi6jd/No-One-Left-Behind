@@ -119,6 +119,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ion.rangeSlider.css" />
+    <Content Include="Content\ion.rangeSlider.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="DispatchView.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -145,6 +147,8 @@
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <None Include="Properties\PublishProfiles\NooneLeftBehind - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
+    <Content Include="Scripts\ion.rangeSlider.js" />
+    <Content Include="Scripts\ion.rangeSlider.min.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
