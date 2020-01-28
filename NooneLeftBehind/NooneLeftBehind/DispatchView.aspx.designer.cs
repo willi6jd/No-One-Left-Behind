@@ -11,7 +11,7 @@ namespace NooneLeftBehind
 {
 
 
-    public partial class EmsView
+    public partial class DispatchView
     {
 
         /// <summary>

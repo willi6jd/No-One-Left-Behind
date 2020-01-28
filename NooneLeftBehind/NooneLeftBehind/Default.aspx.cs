@@ -94,6 +94,9 @@ namespace NooneLeftBehind
             {
                 control.Text = string.Empty;
             }
+
+            hdnDateTime.Value = DateTimeOffset.Now.ToString();
+            hdnTypeOfEmergency.Value = "Uknown";
             lblMessage.Text = String.Empty;
         }
     }

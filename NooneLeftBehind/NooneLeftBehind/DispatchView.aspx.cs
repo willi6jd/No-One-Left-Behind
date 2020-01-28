@@ -9,7 +9,7 @@ using NooneLeftBehind.Models;
 
 namespace NooneLeftBehind
 {
-    public partial class EmsView : System.Web.UI.Page
+    public partial class DispatchView : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -57,7 +57,7 @@ namespace NooneLeftBehind
                     {
                         item.Cleared = true;
                         db.SaveChanges();
-                        Response.Redirect("~/EMSView");
+                        Response.Redirect("~/DispatchView");
                     }
                 }
             }
