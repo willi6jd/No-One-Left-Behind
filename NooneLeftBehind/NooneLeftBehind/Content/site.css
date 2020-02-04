@@ -101,3 +101,17 @@ main {
     border-width: 1px;
     border-style: solid;
 }
+
+#nolbBorder {
+    border: 7px solid #343a40;
+    border-top-width: 75px;
+    height: 490px;
+    width: 425px;
+    padding-bottom: 50px;
+}
+
+.nolbStyle {
+    color: white;
+    margin-top: -45px;
+    text-align: center;
+}

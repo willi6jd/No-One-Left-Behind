@@ -57,9 +57,12 @@
                 </div>
             </div>
             <div class="col-md">             
-                <div class="align-middle">                 
+                <div class="align-middle">
+                    <div id="nolbBorder">
+                        <h2 class ="nolbStyle">No One Left Behind</h2>
                     <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
-                    <div class="qrLabel">
+                    </div>
+                        <div class="qrLabel">
                         <asp:Label ID="labelQrAddress" runat="server" CssClass="control-label" Text=""></asp:Label>
                     </div>
                 </div>
