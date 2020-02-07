@@ -59,11 +59,16 @@
             <div class="col-md">
                 <div class="align-middle">
                     <div id="nolbBorder">
-                        <h2 class ="nolbStyle">No One Left Behind</h2>
-                    <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
-                    </div>
                         <div class="qrLabel">
-                        <asp:Label ID="labelQrAddress" runat="server" CssClass="control-label" Text=""></asp:Label>
+                            <h1>No One Left Behind</h1>
+                            <h3>Scan in case of Emergency</h3>
+                        </div>
+                        <div class="center nolbQrCode">
+                            <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                        </div>
+                        <div class="qrLabel">
+                            <asp:Label ID="labelQrAddress" runat="server" CssClass="control-label" Text=""></asp:Label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -111,14 +116,16 @@
 <asp:Content runat="server" ContentPlaceHolderID="printPlaceHolder">
     <div class="print">             
         <div class="align-middle center nolbPrintBorder">
+            <br>
             <div class="qrLabel">
                 <h1>No One Left Behind</h1>
                 <h3>Scan in case of Emergency</h3>
             </div>
-            <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
+            <div class="center">
+                <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
+            </div>
             <div class="qrLabel">
                 <asp:Label ID="labelQrAddressPrint" runat="server" CssClass="control-label" Text=""></asp:Label>
-                </div>
             </div>
         </div>
     </div>

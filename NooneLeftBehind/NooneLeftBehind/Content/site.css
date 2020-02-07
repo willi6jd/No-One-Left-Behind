@@ -83,7 +83,6 @@ main {
 
     .nolbPrintBorder {
         border: 20px solid #343a40;
-        border-top-width: 120px;
         height: 1050px;
         width: 900px;
     }
@@ -118,9 +117,8 @@ main {
 
 #nolbBorder {
     border: 7px solid #343a40;
-    border-top-width: 75px;
-    height: 490px;
-    width: 425px;
+    height: 550px;
+    width: 420px;
     padding-bottom: 50px;
 }
 
@@ -128,4 +126,9 @@ main {
     color: white;
     margin-top: -45px;
     text-align: center;
+}
+
+.nolbQrCode {
+    margin-top: -5px;
+    margin-bottom: -30px;
 }
