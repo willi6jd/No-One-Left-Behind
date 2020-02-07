@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Configuration;
+using System.Diagnostics;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -7,15 +10,32 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using NooneLeftBehind.Models;
+using SendGrid.Helpers.Mail;
+using SendGrid;
 
 namespace NooneLeftBehind
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            await configSendGridAsync(message);
+        }
+
+        // Use NuGet to install SendGrid (Basic C# client lib) 
+        // ReSharper disable once InconsistentNaming
+        private async Task configSendGridAsync(IdentityMessage message)
+        {
+            var apiKey = Environment.GetEnvironmentVariable("SENDGRID_APIKEY");
+            var client = new SendGridClient(apiKey);
+
+            var from = new EmailAddress("DontReply@NoOneLeftBehind.com", "No One Left Behind");
+            var subject = message.Subject;
+            var to = new EmailAddress(message.Destination);
+            var plainTextContent = message.Body;
+            var htmlContent = message.Body;
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            await client.SendEmailAsync(msg);
         }
     }
 
