@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md">             
+            <div class="col-md">
                 <div class="align-middle">
                     <div id="nolbBorder">
                         <h2 class ="nolbStyle">No One Left Behind</h2>
@@ -109,10 +109,12 @@
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="printPlaceHolder">
-<div class="print">   
-       <div class ="nolbPrintBorder">
-           <h1 class ="nolbStylePrint">No One Left Behind</h1>
-        <div class="align-middle center">
+    <div class="print">             
+        <div class="align-middle center nolbPrintBorder">
+            <div class="qrLabel">
+                <h1>No One Left Behind</h1>
+                <h3>Scan in case of Emergency</h3>
+            </div>
             <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
             <div class="qrLabel">
                 <asp:Label ID="labelQrAddressPrint" runat="server" CssClass="control-label" Text=""></asp:Label>
