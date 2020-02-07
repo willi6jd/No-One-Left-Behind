@@ -50,6 +50,23 @@
                 <li class="nav-item"><a href="/DispatchView" class="nav-link">Dispatch View</a></li>
                 <li class="nav-item"><a href="/QrCodeGenerator" class="nav-link">QR Code Generator</a></li>
               </ul>
+                
+                <asp:LoginView runat="server" ViewStateMode="Disabled">
+                    <AnonymousTemplate>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item"><a runat="server" href="~/Account/Register" class="nav-link">Register</a></li>
+                            <li class="nav-item"><a runat="server" href="~/Account/Login" class="nav-link">Log in</a></li>
+                        </ul>
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item"><a runat="server" href="~/Account/Manage" title="Manage your account" class="nav-link">Hello, <%: Context.User.Identity.Name  %> !</a></li>
+                            <li class="nav-item">
+                                <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" CssClass="nav-link" />
+                            </li>
+                        </ul>
+                    </LoggedInTemplate>
+                </asp:LoginView>
             </div>
           </div>
         </nav>
