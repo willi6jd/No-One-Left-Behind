@@ -14,7 +14,6 @@ namespace NooneLeftBehind.Account
         {
             RegisterHyperLink.NavigateUrl = "Register";
             ForgotPasswordHyperLink.NavigateUrl = "Forgot";
-            OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
             if (!String.IsNullOrEmpty(returnUrl))
             {
