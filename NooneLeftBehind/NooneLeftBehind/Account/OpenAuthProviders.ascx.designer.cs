@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LogonTest.Account {
+namespace NooneLeftBehind.Account {
     
     
     public partial class OpenAuthProviders {

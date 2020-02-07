@@ -4,9 +4,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Owin;
-using LogonTest.Models;
+using NooneLeftBehind.Models;
 
-namespace LogonTest.Account
+namespace NooneLeftBehind.Account
 {
     public partial class RegisterExternalLogin : System.Web.UI.Page
     {

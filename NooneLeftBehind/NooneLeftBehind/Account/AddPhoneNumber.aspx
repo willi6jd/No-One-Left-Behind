@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Phone Number" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddPhoneNumber.aspx.cs" Inherits="LogonTest.Account.AddPhoneNumber" %>
+﻿<%@ Page Title="Phone Number" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddPhoneNumber.aspx.cs" Inherits="NooneLeftBehind.Account.AddPhoneNumber" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="mainPlaceHolder" runat="server">
     <h2><%: Title %>.</h2>

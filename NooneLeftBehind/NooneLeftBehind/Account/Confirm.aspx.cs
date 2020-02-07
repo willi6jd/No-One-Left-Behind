@@ -4,9 +4,9 @@ using System.Web.UI;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
-using LogonTest.Models;
+using NooneLeftBehind.Models;
 
-namespace LogonTest.Account
+namespace NooneLeftBehind.Account
 {
     public partial class Confirm : Page
     {

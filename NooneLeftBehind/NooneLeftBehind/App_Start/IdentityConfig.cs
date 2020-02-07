@@ -6,9 +6,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using LogonTest.Models;
+using NooneLeftBehind.Models;
 
-namespace LogonTest
+namespace NooneLeftBehind
 {
     public class EmailService : IIdentityMessageService
     {

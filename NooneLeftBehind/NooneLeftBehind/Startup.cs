@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(LogonTest.Startup))]
-namespace LogonTest
+[assembly: OwinStartupAttribute(typeof(NooneLeftBehind.Startup))]
+namespace NooneLeftBehind
 {
     public partial class Startup {
         public void Configuration(IAppBuilder app) {

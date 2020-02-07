@@ -5,10 +5,10 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.DataProtection;
+using NooneLeftBehind.Models;
 using Owin;
-using LogonTest.Models;
 
-namespace LogonTest
+namespace NooneLeftBehind
 {
     public partial class Startup {
 

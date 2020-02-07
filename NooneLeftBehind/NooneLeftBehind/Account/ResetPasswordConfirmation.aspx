@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Password Changed" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResetPasswordConfirmation.aspx.cs" Inherits="LogonTest.Account.ResetPasswordConfirmation" Async="true" %>
+﻿<%@ Page Title="Password Changed" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResetPasswordConfirmation.aspx.cs" Inherits="NooneLeftBehind.Account.ResetPasswordConfirmation" Async="true" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="mainPlaceHolder">
     <h2><%: Title %>.</h2>

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LogonTest.Account
+namespace NooneLeftBehind.Account
 {
 
 
@@ -75,6 +75,6 @@ namespace LogonTest.Account
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::LogonTest.Account.OpenAuthProviders OpenAuthLogin;
+        protected global::NooneLeftBehind.Account.OpenAuthProviders OpenAuthLogin;
     }
 }

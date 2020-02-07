@@ -1,6 +1,6 @@
 ﻿using System.Web.UI;
 
-namespace LogonTest.Account
+namespace NooneLeftBehind.Account
 {
     public partial class ResetPasswordConfirmation : Page
     {

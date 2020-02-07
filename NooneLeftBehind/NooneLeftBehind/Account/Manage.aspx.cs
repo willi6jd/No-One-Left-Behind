@@ -8,9 +8,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Owin;
-using LogonTest.Models;
+using NooneLeftBehind.Models;
 
-namespace LogonTest.Account
+namespace NooneLeftBehind.Account
 {
     public partial class Manage : System.Web.UI.Page
     {
