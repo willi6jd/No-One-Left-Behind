@@ -5,6 +5,8 @@ using System.Data.Entity;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using NooneLeftBehind.Models;
 
 namespace NooneLeftBehind
@@ -24,18 +26,36 @@ namespace NooneLeftBehind
         //     string sortByExpression
         public IQueryable<Request> grdRequests_GetData()
         {
-            var db = new AzureNOLBContext();
-            var date = DateTime.Now.AddDays(-1);
-            var requests = db.Requests.Include(x => x.Location)
-                .Where(x => !x.Cleared && x.TimeStamp > date)
-                .OrderByDescending(x => x.TimeStamp);
-            //.GroupBy(x => x.LocationID)
-            //.Select(x => x.OrderByDescending(y => y.TimeStamp).FirstOrDefault()).OrderByDescending(x => x.TimeStamp);
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
-            if (requests.Count() == 0)
-                lblNoResults.Text = "No uncleared requests have been submitted in the last 24 hours.";
+            var user = manager.FindByName(Context.User.Identity.Name);
+            if (user != null)
+            {
+                if (user.GrantedDispatchAccess)
+                {
+                    var db = new AzureNOLBContext();
+                    var date = DateTime.Now.AddDays(-1);
+                    var requests = db.Requests.Include(x => x.Location)
+                        .Where(x => !x.Cleared && x.TimeStamp > date)
+                        .OrderByDescending(x => x.TimeStamp);
+                    //.GroupBy(x => x.LocationID)
+                    //.Select(x => x.OrderByDescending(y => y.TimeStamp).FirstOrDefault()).OrderByDescending(x => x.TimeStamp);
 
-            return requests;
+                    if (!requests.Any())
+                        lblNoResults.Text = "No uncleared requests have been submitted in the last 24 hours.";
+
+                    return requests;
+                }
+                else
+                {
+                    lblNoResults.Text = "You must request access to view this page.";
+                }
+            }
+            else
+            {
+                lblNoResults.Text = "You must be logged into to view this page.";
+            }
+            return null;
         }
 
         protected void grdRequests_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -44,10 +64,9 @@ namespace NooneLeftBehind
             {
                 var id = int.Parse(e.CommandArgument.ToString());
 
-                Request item = null;
                 using (var db = new AzureNOLBContext())
                 {
-                    item = db.Requests.Where(x => x.RequestID == id).SingleOrDefault();
+                    var item = db.Requests.SingleOrDefault(x => x.RequestID == id);
 
                     if (item == null)
                     {                        
