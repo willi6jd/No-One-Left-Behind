@@ -80,6 +80,20 @@ main {
         margin-right: auto;
         width: 800px;
     }
+
+    .nolbPrintBorder {
+        border: 20px solid #343a40;
+        border-top-width: 120px;
+        height: 1050px;
+        width: 900px;
+    }
+
+    .nolbStylePrint {
+        color: white;
+        text-align: center;
+        font-size: 36px;
+        margin-top: -50px;
+    }
 }
 
 .no-display {

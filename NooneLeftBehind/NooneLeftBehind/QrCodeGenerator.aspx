@@ -109,11 +109,14 @@
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="printPlaceHolder">
-    <div class="print">             
-        <div class="align-middle center">                 
+<div class="print">   
+       <div class ="nolbPrintBorder">
+           <h1 class ="nolbStylePrint">No One Left Behind</h1>
+        <div class="align-middle center">
             <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
             <div class="qrLabel">
                 <asp:Label ID="labelQrAddressPrint" runat="server" CssClass="control-label" Text=""></asp:Label>
+                </div>
             </div>
         </div>
     </div>
