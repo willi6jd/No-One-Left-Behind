@@ -56,10 +56,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md">             
-                <div class="align-middle">        
+            <div class="col-md">
+                <div class="align-middle">
+                    <div id="nolbBorder">
+                        <h2 class ="nolbStyle">No One Left Behind</h2>
                     <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
-                    <div class="qrLabel">
+                    </div>
+                        <div class="qrLabel">
                         <asp:Label ID="labelQrAddress" runat="server" CssClass="control-label" Text=""></asp:Label>
                     </div>
                 </div>
@@ -107,7 +110,7 @@
 
 <asp:Content runat="server" ContentPlaceHolderID="printPlaceHolder">
     <div class="print">             
-        <div class="align-middle center">
+        <div class="align-middle center nolbPrintBorder">
             <div class="qrLabel">
                 <h1>No One Left Behind</h1>
                 <h3>Scan in case of Emergency</h3>
@@ -115,6 +118,7 @@
             <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
             <div class="qrLabel">
                 <asp:Label ID="labelQrAddressPrint" runat="server" CssClass="control-label" Text=""></asp:Label>
+                </div>
             </div>
         </div>
     </div>
