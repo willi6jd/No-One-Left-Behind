@@ -48,7 +48,7 @@ namespace NooneLeftBehind
                 }
                 else
                 {
-                    lblNoResults.Text = "You must request access to view this page. <a href=\"/Account/Manage\">Go to account management to request access.</a>.";
+                    lblNoResults.Text = "You must request access to view this page. <a href=\"/Account/Manage\">Go to account management to request access.</a>";
                 }
             }
             else
