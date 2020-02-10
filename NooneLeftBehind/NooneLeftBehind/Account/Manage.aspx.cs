@@ -125,7 +125,7 @@ namespace NooneLeftBehind.Account
                 {
                     var email = new IdentityMessage
                     {
-                        Subject = $"Dispatch Request",
+                        Subject = $"Dispatch Access Request",
                         Body = $"{User.Identity.Name} has requested dispatch access.",
                         Destination = adminEmail
                     };
