@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -39,7 +40,7 @@ namespace NooneLeftBehind.Account
 
             HasPhoneNumber = String.IsNullOrEmpty(manager.GetPhoneNumber(User.Identity.GetUserId()));
 
-            // Enable this after setting up two-factor authentientication
+            // Enable this after setting up two-factor authentication
             //PhoneNumber.Text = manager.GetPhoneNumber(User.Identity.GetUserId()) ?? String.Empty;
 
             TwoFactorEnabled = manager.GetTwoFactorEnabled(User.Identity.GetUserId());
@@ -59,6 +60,26 @@ namespace NooneLeftBehind.Account
                 {
                     CreatePassword.Visible = true;
                     ChangePassword.Visible = false;
+                }
+
+                var user = manager.FindById(User.Identity.GetUserId());
+                if (user.GrantedDispatchAccess)
+                {
+                    DispatchAccessGranted.Visible = true;
+                    RequestDispatchAccess.Visible = false;
+                    ResendRequest.Visible = false;
+                }
+                else if (user.RequestedDispatchAccess)
+                {
+                    DispatchAccessGranted.Visible = false;
+                    RequestDispatchAccess.Visible = false;
+                    ResendRequest.Visible = true;
+                }
+                else
+                {
+                    RequestDispatchAccess.Visible = true;
+                    DispatchAccessGranted.Visible = false;
+                    ResendRequest.Visible = false;
                 }
 
                 // Render success message
@@ -86,6 +107,30 @@ namespace NooneLeftBehind.Account
             foreach (var error in result.Errors)
             {
                 ModelState.AddModelError("", error);
+            }
+        }
+
+        protected void RequestDispatchAccess_Click(object sender, EventArgs e)
+        {
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var result = manager.RequestDispatchAccess(User.Identity.GetUserId());
+            if (result.Succeeded)
+            {
+                SuccessMessage = "Dispatch access request successfully received.";
+                successMessage.Visible = true;
+                RequestDispatchAccess.Visible = false;
+                ResendRequest.Visible = true;
+                var adminEmail = ConfigurationManager.AppSettings["AdminEmail"];
+                if (!string.IsNullOrWhiteSpace(adminEmail))
+                {
+                    var email = new IdentityMessage
+                    {
+                        Subject = $"Dispatch Request",
+                        Body = $"{User.Identity.Name} has requested dispatch access.",
+                        Destination = adminEmail
+                    };
+                    manager.EmailService.SendAsync(email);
+                }
             }
         }
 

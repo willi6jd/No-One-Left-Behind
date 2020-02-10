@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Configuration;
+using System.Data.Entity.SqlServer.Utilities;
 using System.Diagnostics;
 using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -12,6 +14,8 @@ using Microsoft.Owin.Security;
 using NooneLeftBehind.Models;
 using SendGrid.Helpers.Mail;
 using SendGrid;
+using System.Globalization;
+using System.Threading;
 
 namespace NooneLeftBehind
 {
@@ -54,6 +58,28 @@ namespace NooneLeftBehind
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
         {
+        }
+
+        public IdentityResult RequestDispatchAccess(
+            string userId)
+        {
+            return AsyncHelper.RunSync<IdentityResult>((Func<Task<IdentityResult>>)(() => this.RequestDispatchAccessAsync(userId)));
+        }
+
+        private async Task<IdentityResult> RequestDispatchAccessAsync(string userId)
+        {
+            var user = await FindByIdAsync(userId);
+            if (user == null)
+                throw new InvalidOperationException();
+            SetRequestDispatchAccessAsync(user);
+            return await this.UpdateAsync(user).WithCurrentCulture<IdentityResult>();
+        }
+
+        private void SetRequestDispatchAccessAsync(ApplicationUser user)
+        {
+            if (user == null)
+                throw new InvalidOperationException();
+            user.RequestedDispatchAccess = true;
         }
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
@@ -101,6 +127,35 @@ namespace NooneLeftBehind
                 manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
+        }
+    }
+
+    internal static class AsyncHelper
+    {
+        private static readonly TaskFactory _myTaskFactory = new TaskFactory(CancellationToken.None, TaskCreationOptions.None, TaskContinuationOptions.None, TaskScheduler.Default);
+
+        public static TResult RunSync<TResult>(Func<Task<TResult>> func)
+        {
+            CultureInfo cultureUi = CultureInfo.CurrentUICulture;
+            CultureInfo culture = CultureInfo.CurrentCulture;
+            return AsyncHelper._myTaskFactory.StartNew<Task<TResult>>((Func<Task<TResult>>)(() =>
+            {
+                Thread.CurrentThread.CurrentCulture = culture;
+                Thread.CurrentThread.CurrentUICulture = cultureUi;
+                return func();
+            })).Unwrap<TResult>().GetAwaiter().GetResult();
+        }
+
+        public static void RunSync(Func<Task> func)
+        {
+            CultureInfo cultureUi = CultureInfo.CurrentUICulture;
+            CultureInfo culture = CultureInfo.CurrentCulture;
+            AsyncHelper._myTaskFactory.StartNew<Task>((Func<Task>)(() =>
+            {
+                Thread.CurrentThread.CurrentCulture = culture;
+                Thread.CurrentThread.CurrentUICulture = cultureUi;
+                return func();
+            })).Unwrap().GetAwaiter().GetResult();
         }
     }
 
