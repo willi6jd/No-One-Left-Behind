@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -119,6 +120,17 @@ namespace NooneLeftBehind.Account
                 successMessage.Visible = true;
                 RequestDispatchAccess.Visible = false;
                 ResendRequest.Visible = true;
+                var adminEmail = ConfigurationManager.AppSettings["AdminEmail"];
+                if (!string.IsNullOrWhiteSpace(adminEmail))
+                {
+                    var email = new IdentityMessage
+                    {
+                        Subject = $"Dispatch Request",
+                        Body = $"{User.Identity.Name} has requested dispatch access.",
+                        Destination = adminEmail
+                    };
+                    manager.EmailService.SendAsync(email);
+                }
             }
         }
 
