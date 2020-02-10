@@ -157,7 +157,12 @@
                 </div>
             </div>
         </div>
-        <div id="mapholder"></div>
+        <div class="align-middle">
+            <div class="center">
+                <label class="control-label center-text">Drag Red Marker to Update Location</label>
+            </div>
+            <div id="mapholder"></div>
+        </div>
         <script>
             function OnTypeOfEmergencyClick(imageButton) {
                 var x = document.getElementsByClassName("type-of-emergency");
