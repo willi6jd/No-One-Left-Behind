@@ -22,6 +22,12 @@
                         <asp:HyperLink NavigateUrl="/Account/ManagePassword" Text="[Change]" Visible="false" ID="ChangePassword" runat="server" />
                         <asp:HyperLink NavigateUrl="/Account/ManagePassword" Text="[Create]" Visible="false" ID="CreatePassword" runat="server" />
                     </dd>
+                    <dt>Dispatch Access:</dt>
+                    <dd>
+                        <asp:LinkButton Text="[Request Dispatch Access]" OnClick="RequestDispatchAccess_Click" runat="server" ID="RequestDispatchAccess" Visible="False" />
+                        <asp:LinkButton Text="[Resend Request]" OnClick="RequestDispatchAccess_Click" runat="server" ID="ResendRequest" Visible="False" />
+                        <asp:Label ID="DispatchAccessGranted" runat="server" Text="Dispatch Access Granted" Visible="False"></asp:Label>
+                    </dd>
                     <%--<dt>External Logins:</dt>
                     <dd><%: LoginsCount %>
                         <asp:HyperLink NavigateUrl="/Account/ManageLogins" Text="[Manage]" runat="server" />
