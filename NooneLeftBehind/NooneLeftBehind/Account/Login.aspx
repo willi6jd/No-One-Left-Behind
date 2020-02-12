@@ -14,46 +14,56 @@
                             <asp:Literal runat="server" ID="FailureText" />
                         </p>
                     </asp:PlaceHolder>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="pad"></div>
+    <section class="container-fluid">
+        <section class="row justify-content-center">
+            <section class="col-lg-4 col-sm-6">
+                <img src="../Images/nolbPH.png" class="bgNOLB">
+                <div class="form-container justify-content-center">
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Email</asp:Label>
-                        <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
-                                CssClass="text-danger" ErrorMessage="The email field is required." />
-                        </div>
+                        <asp:Label runat="server" AssociatedControlID="Email" CssClass="control-label">Email</asp:Label>
+                        <asp:TextBox runat="server" ID="Email" placeholder="Email" CssClass="form-control" TextMode="Email" />
                     </div>
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Password</asp:Label>
-                        <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="The password field is required." />
-                        </div>
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
+                            CssClass="text-danger" ErrorMessage="The email field is required." />
+                    </div>
+    
+                        
+                    
+                    <div class="form-group">
+                        <asp:Label runat="server" AssociatedControlID="Password" CssClass="control-label">Password</asp:Label>
+                        <asp:TextBox runat="server" ID="Password" placeholder="Password" TextMode="Password" CssClass="form-control" />
                     </div>
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <div class="checkbox">
-                                <asp:CheckBox runat="server" ID="RememberMe" />
-                                <asp:Label runat="server" AssociatedControlID="RememberMe">Remember me?</asp:Label>
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="The password field is required." />
+                    </div>
+                    <div class="checkbox">
+                            <asp:CheckBox runat="server" ID="RememberMe" />
+                            <asp:Label runat="server" AssociatedControlID="RememberMe">Remember me</asp:Label>
+                        </div>
+                    <div class="form-group">
+                        <div class="row justify-content-between">
+                            <div class="col-4">
+                                <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register</asp:HyperLink>
+                            </div>
+                            <div class="col-4">
+                                <asp:Button runat="server" OnClick="LogIn" Text="Login" CssClass="btn btn-primary btn-block" />
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-default" />
-                            &nbsp;&nbsp;
-                            <asp:Button runat="server" ID="ResendConfirm"  OnClick="SendEmailConfirmationToken" Text="Resend confirmation" Visible="false" CssClass="btn btn-default" />
-
-                        </div>
+                        <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
                     </div>
                 </div>
-                <p>
-                    <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register as a new user</asp:HyperLink>
-                </p>
-                <p>
-                    <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
-                    
-                </p>
             </section>
-        </div>
-    </div>
+        </section>
+    </section>
+    &nbsp;&nbsp;
+    <asp:Button runat="server" ID="ResendConfirm" OnClick="SendEmailConfirmationToken" Text="Resend confirmation" Visible="false" CssClass="btn btn-default" />
 </asp:Content>
