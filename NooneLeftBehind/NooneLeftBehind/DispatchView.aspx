@@ -11,7 +11,7 @@
                 <asp:TemplateField>
                     <ItemTemplate>
                         <asp:Button ID="btnClear" runat="server" Text="Clear" 
-                                    CommandName="ClearRequest" CommandArgument="<%# Item.RequestID %>" CssClass="form-control" />
+                                    CommandName="ClearRequest" CommandArgument="<%# Item.RequestID %>" CssClass="form-control" OnClientClick="return confirm('Are you sure you want to clear the request?')"  />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:DynamicField DataField="TimeStamp" />
