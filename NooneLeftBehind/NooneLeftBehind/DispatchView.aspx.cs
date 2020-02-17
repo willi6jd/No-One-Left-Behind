@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
+using System.Linq.Expressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -41,6 +42,10 @@ namespace NooneLeftBehind
                     //.GroupBy(x => x.LocationID)
                     //.Select(x => x.OrderByDescending(y => y.TimeStamp).FirstOrDefault()).OrderByDescending(x => x.TimeStamp);
 
+                    var coords = requests.ToList().Select(x => new {Lat = x.Latitude, Long = x.Longitude, description = GetDescription(x), type = x.TypeOfEmergency.Replace(" ", "") }).ToList();
+
+                    hdnCoords.Value = Newtonsoft.Json.JsonConvert.SerializeObject(coords);
+
                     if (!requests.Any())
                         lblNoResults.Text = "No uncleared requests have been submitted in the last 24 hours.";
 
@@ -56,6 +61,35 @@ namespace NooneLeftBehind
                 lblNoResults.Text = "You must be logged into to view this page.";
             }
             return null;
+        }
+
+        private static string GetDescription(Request x)
+        {
+            var description = string.Empty;
+            description += x.TimeStamp.LocalDateTime.ToShortDateString() + "  " + x.TimeStamp.LocalDateTime.ToShortTimeString();
+            var parameters = new List<string>();
+
+            if (!string.IsNullOrWhiteSpace(x.Location.StreetAddress))
+                parameters.Add($"{x.Location.StreetAddress}<br>");
+            if (!string.IsNullOrWhiteSpace(x.Location.Floor))
+                parameters.Add($"Floor {x.Location.Floor}{(string.IsNullOrWhiteSpace(x.Location.RoomNumber) ? "<br>" : ",")}");
+            if (!string.IsNullOrWhiteSpace(x.Location.RoomNumber))
+                parameters.Add($"Room {x.Location.RoomNumber}<br>");
+            if (!string.IsNullOrWhiteSpace(x.Location.City))
+                parameters.Add($"{x.Location.City},");
+            if (!string.IsNullOrWhiteSpace(x.Location.State))
+                parameters.Add($"{x.Location.State}");
+            var address = string.Join(" ", parameters);
+
+            description += $"<br><br>{address}";
+            description += $"<br><br>Emergency Type: {x.TypeOfEmergency}";
+            description += $"<br>Number of People: {x.NumberOfPeople}";
+            description += $"<br>Number of Immobile People: {x.NumberOfImmobilePeople}";
+            description += $"<br><br>Injuries/Info: {x.InjuriesOrOtherInfo}";
+            description += $"<br>Name: {x.FirstName} {x.LastName}";
+            description += $"<br>Phone Number: <a href=tel:{x.PhoneNumber}>{x.PhoneNumber}</a>";
+
+            return description;
         }
 
         protected void grdRequests_RowCommand(object sender, GridViewCommandEventArgs e)

@@ -24,6 +24,11 @@ textarea {
     width: 100%;
 }
 
+#mapHolderDispatch {
+    height: 600px;
+    width: 100%;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .jumbotron {
