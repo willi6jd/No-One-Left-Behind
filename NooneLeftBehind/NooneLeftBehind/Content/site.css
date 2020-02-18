@@ -29,6 +29,26 @@ textarea {
     width: 100%;
 }
 
+.RequestItem {
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+table {
+    width: 95%;
+}
+
+td {
+    width: 50%;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .jumbotron {
