@@ -43,5 +43,36 @@ namespace NooneLeftBehind.Models
         public bool Cleared { get; set; }
 
         public virtual Location Location { get; set; }
+
+        [NotMapped] public string Description => GetDescription();
+
+        public string GetDescription()
+        {
+            var description = string.Empty;
+            description += TimeStamp.LocalDateTime.ToShortDateString() + "  " + TimeStamp.LocalDateTime.ToShortTimeString();
+            var parameters = new List<string>();
+
+            if (!string.IsNullOrWhiteSpace(Location.StreetAddress))
+                parameters.Add($"{Location.StreetAddress}<br>");
+            if (!string.IsNullOrWhiteSpace(Location.Floor))
+                parameters.Add($"Floor {Location.Floor}{(string.IsNullOrWhiteSpace(Location.RoomNumber) ? "<br>" : ",")}");
+            if (!string.IsNullOrWhiteSpace(Location.RoomNumber))
+                parameters.Add($"Room {Location.RoomNumber}<br>");
+            if (!string.IsNullOrWhiteSpace(Location.City))
+                parameters.Add($"{Location.City},");
+            if (!string.IsNullOrWhiteSpace(Location.State))
+                parameters.Add($"{Location.State}");
+            var address = string.Join(" ", parameters);
+
+            description += $"<br><br><b>Location</b>:<br>{address}";
+            description += $"<br><br><b>Emergency</b>: {TypeOfEmergency}";
+            description += $"<br><b>People</b>: {NumberOfPeople}";
+            description += $"<br><b>Immobile People</b>: {NumberOfImmobilePeople}";
+            description += $"<br><br><b>Injuries/Info</b>: {InjuriesOrOtherInfo}";
+            description += $"<br><b>Name</b>: {FirstName} {LastName}";
+            description += $"<br><b>Phone</b>: <a href=tel:{PhoneNumber}>{PhoneNumber}</a>";
+
+            return description;
+        }
     }
 }

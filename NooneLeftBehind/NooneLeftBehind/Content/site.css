@@ -24,6 +24,35 @@ textarea {
     width: 100%;
 }
 
+#mapHolderDispatch {
+    height: 600px;
+    width: 100%;
+}
+
+.RequestItem {
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+table {
+    width: 95%;
+}
+
+td {
+    width: 50%;
+}
+
+.selected-dispatch {
+    background-color: yellow;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .jumbotron {
@@ -41,6 +70,14 @@ textarea {
 
 main {
     padding-bottom: 50px;
+}
+
+.navbar-custom {
+    margin-top: -50px;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
 }
 
 @media screen {

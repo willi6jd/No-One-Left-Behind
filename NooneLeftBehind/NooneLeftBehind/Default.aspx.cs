@@ -96,7 +96,7 @@ namespace NooneLeftBehind
             }
 
             hdnDateTime.Value = DateTimeOffset.Now.ToString();
-            hdnTypeOfEmergency.Value = "Uknown";
+            hdnTypeOfEmergency.Value = "Unknown";
             lblMessage.Text = String.Empty;
         }
     }
