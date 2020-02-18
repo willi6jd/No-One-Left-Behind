@@ -172,7 +172,7 @@
 
                 $('#' + imageButton.id).addClass('selected');
                 var x = document.getElementById('<%= hdnTypeOfEmergency.ClientID %>');
-                x.value = imageButton.alt;l
+                x.value = imageButton.alt;
             }
         </script>
         <script>
