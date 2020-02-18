@@ -18,7 +18,7 @@ namespace NooneLeftBehind
             if (!IsPostBack)
             {
                 hdnDateTime.Value = DateTimeOffset.Now.ToString();
-                hdnTypeOfEmergency.Value = "Uknown";
+                hdnTypeOfEmergency.Value = "Unknown";
             }
 
             if (Request.QueryString["StreetAddress"] != null)
@@ -82,7 +82,7 @@ namespace NooneLeftBehind
                 lblMessage.Text = "Request Successfully Submitted.";
 
                 hdnDateTime.Value = DateTimeOffset.Now.ToString();
-                hdnTypeOfEmergency.Value = "Uknown";
+                hdnTypeOfEmergency.Value = "Unknown";
             }
         }
 
