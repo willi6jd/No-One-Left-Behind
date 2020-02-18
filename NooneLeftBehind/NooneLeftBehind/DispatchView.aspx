@@ -5,12 +5,12 @@
         
         <asp:Panel ID="LoggedInPanel" runat="server">
             <div class="row" style="height: 575px" >
-                <div class="col-7">
+                <div class="col-md-7">
                     <div class="align-middle">
                         <div id="mapHolderDispatch"></div>
                     </div>
                 </div>
-                <div class="col">
+                <div class="col-md">
                     <div style=" overflow:auto; height:600px;">
                         <asp:UpdatePanel ID="UpdatePanel" runat="server">
                             <ContentTemplate>
