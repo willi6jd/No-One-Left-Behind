@@ -1,10 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DispatchView.aspx.cs" Inherits="NooneLeftBehind.DispatchView" MasterPageFile="Site.Master" %>
 
-<asp:Content runat="server" ContentPlaceHolderID="tablePlaceHolder">
+<asp:Content runat="server" ContentPlaceHolderID="mainPlaceHolder">
     <div style="padding-top: 10px;" class="container">
         
         <asp:Panel ID="LoggedInPanel" runat="server">
-            <div class="row">
+            <div class="row" style="height: 575px" >
                 <div class="col-7">
                     <div class="align-middle">
                         <div id="mapHolderDispatch"></div>
@@ -28,6 +28,7 @@
                                     </FooterTemplate>
                                 </asp:DataList>
                                 <asp:HiddenField ID="hdnCoords" runat="server" />
+                                <asp:HiddenField ID="hdnMapBoundsChanged" runat="server" />
                             
                             
                                 <asp:Timer ID="RefreshTimer" Interval="1000" runat="server" OnTick="RefreshTimer_OnTick"></asp:Timer>
@@ -40,6 +41,12 @@
                 
                     </div>
                 </div>
+            </div>
+        </asp:Panel>
+        
+        <asp:Panel ID="NoAccessPanel" runat="server">
+            <div class="container" style="padding-top: 10px;">
+                <asp:Label ID="lblNoAccess" runat="server" Text="" CssClass="text-center"></asp:Label>
             </div>
         </asp:Panel>
         <script>
@@ -71,6 +78,7 @@
                 document.getElementById('<%=hdnMapTopRightLong.ClientID %>').value = map.getBounds().getNorthEast().lng();
                 document.getElementById('<%=hdnMapBottomLeftLat.ClientID %>').value = map.getBounds().getSouthWest().lat();
                 document.getElementById('<%=hdnMapBottomLeftLong.ClientID %>').value = map.getBounds().getSouthWest().lng();
+                document.getElementById('<%=hdnMapBoundsChanged.ClientID %>').value = 'true';
                 document.getElementById('<%=hdnCoords.ClientID %>').value = '';
             }
 
@@ -108,10 +116,7 @@
 
             function showLocations() {
                 deleteMarkers();
-                console.log("test");
-                console.log(document.getElementById('<%=hdnCoords.ClientID %>').value);
                 var coords = JSON.parse(document.getElementById('<%=hdnCoords.ClientID %>').value);
-                console.log(coords);
                 var infoWindow = new google.maps.InfoWindow();
                 var labelNum = 1;
 
@@ -121,6 +126,18 @@
                         continue;
                     }
                     var marker = new google.maps.Marker({ position: current, map: map, label: (labelNum++).toString() });
+                    google.maps.event.addListener(marker,
+                        'click',
+                        function () {
+                            var x = document.getElementsByClassName("RequestItem");
+                            for (var i = 0; i < x.length; i++) {
+                                $(x[i]).removeClass('selected-dispatch');
+                                if (i == this.label) {
+                                    $(x[i]).addClass('selected-dispatch');
+                                    $(x[i])[0].scrollIntoView();
+                                }
+                            }
+                        });
                     markers.push(marker);
                     (function (marker, data) {
                         google.maps.event.addListener(marker, "click", function (e) {
@@ -137,14 +154,6 @@
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCu4Kt_LuqphKL8bVqQwMOyRVff7gLAXi4&callback=getLocation">
         </script>
     </div>
-</asp:Content>
-
-<asp:Content runat="server" ContentPlaceHolderID="mainPlaceHolder">
-    <asp:Panel ID="NoAccessPanel" runat="server">
-        <div class="container" style="padding-top: 10px;">
-            <asp:Label ID="lblNoAccess" runat="server" Text="" CssClass="text-center"></asp:Label>
-        </div>
-    </asp:Panel>
 </asp:Content>
 
 <asp:Content runat="server" ContentPlaceHolderID="footerPlaceHolder">

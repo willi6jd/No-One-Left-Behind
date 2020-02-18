@@ -37,6 +37,7 @@ namespace NooneLeftBehind
                         var rightLimit = Convert.ToDecimal(hdnMapTopRightLong.Value);
                         var bottomLimit = Convert.ToDecimal(hdnMapBottomLeftLat.Value);
                         var leftLimit = Convert.ToDecimal(hdnMapBottomLeftLong.Value);
+                        var mapBoundsHasChanged = Convert.ToBoolean(hdnMapBoundsChanged.Value);
                         var db = new AzureNOLBContext();
                         var date = DateTime.Now.AddDays(-1);
                         var requests = db.Requests.Include(x => x.Location)
@@ -52,27 +53,27 @@ namespace NooneLeftBehind
                         if (this.Session["LastRequests"] != null)
                             lastRequestIds = ((List<Request>) this.Session["LastRequests"]).Select(x => x.RequestID)
                                 .ToList();
-                        if (!ScrambledEquals(lastRequestIds, requestIds))
+                        if (!ScrambledEquals(lastRequestIds, requestIds) || lastRequestIds.Count == 0 || mapBoundsHasChanged)
                         {
+                            hdnMapBoundsChanged.Value = false.ToString();
                             this.Session["LastRequests"] = requests;
                             RequestDataList.DataSource = requests;
                             RequestDataList.DataBind();
                             var coords = requests.Select(x => new
                             {
-                                Lat = x.Latitude, Long = x.Longitude, description = x.GetDescription(),
-                                type = x.TypeOfEmergency.Replace(" ", "")
+                                Lat = x.Latitude, Long = x.Longitude, description = x.GetDescription()
                             }).ToList();
 
                             hdnCoords.Value = Newtonsoft.Json.JsonConvert.SerializeObject(coords);
                             ScriptManager.RegisterStartupScript(this, GetType(), "showLocations", "showLocations();",
                                 true);
                             if (!requests.Any())
-                                lblNoAccess.Text = "No uncleared requests have been submitted in the last 24 hours.";
+                                lblMessage.Text = "No uncleared requests have been submitted in the last 24 hours.";
                         }
-
-                        NoAccessPanel.CssClass = " no-display";
-                        LoggedInPanel.CssClass = "";
                     }
+
+                    NoAccessPanel.CssClass = " no-display";
+                    LoggedInPanel.CssClass = "";
                 }
                 else
                 {
