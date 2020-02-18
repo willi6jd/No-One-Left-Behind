@@ -28,7 +28,6 @@
                                     </FooterTemplate>
                                 </asp:DataList>
                                 <asp:HiddenField ID="hdnCoords" runat="server" />
-                                <asp:HiddenField ID="hdnMapBoundsChanged" runat="server" />
                             
                             
                                 <asp:Timer ID="RefreshTimer" Interval="1000" runat="server" OnTick="RefreshTimer_OnTick"></asp:Timer>
@@ -78,7 +77,6 @@
                 document.getElementById('<%=hdnMapTopRightLong.ClientID %>').value = map.getBounds().getNorthEast().lng();
                 document.getElementById('<%=hdnMapBottomLeftLat.ClientID %>').value = map.getBounds().getSouthWest().lat();
                 document.getElementById('<%=hdnMapBottomLeftLong.ClientID %>').value = map.getBounds().getSouthWest().lng();
-                document.getElementById('<%=hdnMapBoundsChanged.ClientID %>').value = 'true';
                 document.getElementById('<%=hdnCoords.ClientID %>').value = '';
             }
 

@@ -17,6 +17,10 @@ namespace NooneLeftBehind
         protected void Page_Load(object sender, EventArgs e)
         {
             GetRequestData();
+            if (!IsPostBack)
+            {
+                Session["HasShownData"] = false;
+            }
         }
 
         public void GetRequestData()
@@ -37,7 +41,6 @@ namespace NooneLeftBehind
                         var rightLimit = Convert.ToDecimal(hdnMapTopRightLong.Value);
                         var bottomLimit = Convert.ToDecimal(hdnMapBottomLeftLat.Value);
                         var leftLimit = Convert.ToDecimal(hdnMapBottomLeftLong.Value);
-                        var mapBoundsHasChanged = Convert.ToBoolean(hdnMapBoundsChanged.Value);
                         var db = new AzureNOLBContext();
                         var date = DateTime.Now.AddDays(-1);
                         var requests = db.Requests.Include(x => x.Location)
@@ -53,9 +56,9 @@ namespace NooneLeftBehind
                         if (this.Session["LastRequests"] != null)
                             lastRequestIds = ((List<Request>) this.Session["LastRequests"]).Select(x => x.RequestID)
                                 .ToList();
-                        if (!ScrambledEquals(lastRequestIds, requestIds) || lastRequestIds.Count == 0 || mapBoundsHasChanged)
+                        var hasShownData = (bool)(Session["HasShownData"] ?? false);
+                        if (!ScrambledEquals(lastRequestIds, requestIds) || lastRequestIds.Count == 0 || !hasShownData)
                         {
-                            hdnMapBoundsChanged.Value = false.ToString();
                             this.Session["LastRequests"] = requests;
                             RequestDataList.DataSource = requests;
                             RequestDataList.DataBind();
@@ -67,6 +70,7 @@ namespace NooneLeftBehind
                             hdnCoords.Value = Newtonsoft.Json.JsonConvert.SerializeObject(coords);
                             ScriptManager.RegisterStartupScript(this, GetType(), "showLocations", "showLocations();",
                                 true);
+                            Session["HasShownData"] = true;
                             if (!requests.Any())
                                 lblMessage.Text = "No uncleared requests have been submitted in the last 24 hours.";
                         }
