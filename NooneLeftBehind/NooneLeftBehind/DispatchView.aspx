@@ -130,7 +130,7 @@
                             var x = document.getElementsByClassName("RequestItem");
                             for (var i = 0; i < x.length; i++) {
                                 $(x[i]).removeClass('selected-dispatch');
-                                if (i == this.label) {
+                                if (i == this.label - 1) {
                                     $(x[i]).addClass('selected-dispatch');
                                     $(x[i])[0].scrollIntoView();
                                 }
