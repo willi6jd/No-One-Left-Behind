@@ -181,3 +181,21 @@ main {
     margin-top: -5px;
     margin-bottom: -30px;
 }
+
+.form-container {
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 0px 10px 0px;
+}
+
+.bgNOLB {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: -35px;
+    left: 42%;
+}
+
+.pad {
+    margin-top: 100px;
+}
