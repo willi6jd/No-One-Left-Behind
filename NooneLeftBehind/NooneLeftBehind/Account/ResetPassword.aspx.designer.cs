@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NooneLeftBehind.Account {
-    
-    
-    public partial class ResetPassword {
-        
+namespace NooneLeftBehind.Account
+{
+
+
+    public partial class ResetPassword
+    {
+
         /// <summary>
         /// ErrorMessage control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace NooneLeftBehind.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ErrorMessage;
-        
+
         /// <summary>
         /// Email control.
         /// </summary>
@@ -29,16 +31,7 @@ namespace NooneLeftBehind.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Email;
-        
-        /// <summary>
-        /// Password control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Password;
-        
+
         /// <summary>
         /// ConfirmPassword control.
         /// </summary>
@@ -47,5 +40,14 @@ namespace NooneLeftBehind.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ConfirmPassword;
+
+        /// <summary>
+        /// Password control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Password;
     }
 }
